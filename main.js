@@ -12,13 +12,16 @@ const fileCreator = new FileCreator(__dirname);
 // メインウィンドウはGCされないようにグローバル宣言
 let mainWindow;
 
+let projectName;
+
 // ElectronのMenuの設定
 const templateMenu = [
     {
         label: 'File',
         submenu: [
             {
-                label: 'save', click: fileCreator.saveProject()
+                label: 'save', click: fileCreator.saveProject(projectName)
+                // レンダラーにhiddenなくしてっていう
             }
         ]
     },
@@ -87,6 +90,15 @@ app.on('ready', function () {
     });
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
+    const menu = Menu.buildFromTemplate(templateMenu);
+    Menu.setApplicationMenu(menu);
+    var ipc = require('electron').ipcMain;
+
+    ipc.on('invokeAction', function (event, data) {
+        event.sender.send('actionReply', data);
+        projectName = data;
+        console.log(data);
+    });
     // // You can obviously give a direct path without use the dialog (C:/Program Files/path/myfileexample.txt)
     // dialog.showSaveDialog((fileName) => {
     //     if (fileName === undefined) {
@@ -104,8 +116,7 @@ app.on('ready', function () {
 
 
 
-    const menu = Menu.buildFromTemplate(templateMenu);
-    Menu.setApplicationMenu(menu);
+
 
     //ウィンドウが閉じられたらアプリも終了
     mainWindow.on('closed', function () {
