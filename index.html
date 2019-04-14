@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="utf-8">
     <title>ElectronApp</title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
-    <p>Hello World</p>
-    <p>From Hiyoko3</p>
 
+<main id="main">
 <textarea id="memo-md-field" class="markdown-text active"># hoge
 - a
 - b
 - c
 </textarea>
+    <div id="memo-md-preview" class="markdown-preview active d-hidden"></div>
+</main>
 
-    <textarea id="todo-md-field" class="markdown-text">
-    # aa
-        ## bb
-</textarea>
-
-<button id="preview-btn">Preview</button>
-
-    <div id="memo-md-preview" class="markdown-preview active"></div>
-
-    <script src="app/modules/preview.js"></script>
+<script src="app/modules/renderer.js"></script>
+<script src="app/modules/mdEditor.js"></script>
 </body>
 </html>

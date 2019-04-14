@@ -1,31 +1,35 @@
 'use strict';
 
-// アプリケーションをコントロールするモジュール
-let electron = require('electron');
-let app = electron.app;
-let BrowserWindow = electron.BrowserWindow;
+// global module
+const { app, globalShortcut, BrowserWindow } = require('electron');
 
 // メインウィンドウはGCされないようにグローバル宣言
 let mainWindow;
 
-// 全てのウィンドウが閉じたら終了
+// Window closed events
 app.on('window-all-closed', () => {
     if (process.platform != 'darwin') {
         app.quit();
     }
 });
 
-// Electronの初期化完了後に実行
+// Executed after the electron started.
 app.on('ready', () => {
-    // メイン画面の表示
+    // Main process
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600
     });
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
-    //ウィンドウが閉じられたらアプリも終了
+    // App exit.
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+    // Shortcut command event
+    globalShortcut.register('CommandOrControl+P', () => {
+        // request to toggle editor mode.
+        mainWindow.webContents.send('toggleMdEditor', {});
+    })
 });

@@ -1,0 +1,9 @@
+.d-hidden {
+    display: none;
+}
+
+.markdown-preview {
+    border: 3px solid #ccc;
+    min-height: 300px;
+    width: 100px;
+}
