@@ -1,3 +1,10 @@
+/**
+ * The Controller of markdown editor
+ *
+ * === Functions ===
+ * - Convert the markdown text to the html text.
+ * - Toggle editor view.
+ */
 // libraries
 const marked = require('marked');
 
@@ -18,7 +25,7 @@ const MdEditor = function (document) {
     };
 
     //
-    this.translate = () => {
+    this.convert = () => {
         this.init();
 
         const text = this.markdown.value;
@@ -28,7 +35,7 @@ const MdEditor = function (document) {
     };
 
     this.toggle = () => {
-        this.translate();
+        this.convert();
 
         this.markdown.classList.toggle('d-hidden');
         this.preview.classList.toggle('d-hidden');
