@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Narukey, Tatwo.yap",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.1.4"
+  }
 }
