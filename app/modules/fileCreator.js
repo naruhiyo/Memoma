@@ -9,8 +9,7 @@ const FileCreator = class {
         this.dirName = dirName;
     }
 
-    saveProject() {
-        let projectName = 'ProjectHoge';
+    saveProject(projectName) {
         let content = "Some text to save into the file";
 
         let pdir = this.dirName + '/' + projectName;
