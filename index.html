@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
     <meta charset="utf-8">
@@ -9,6 +9,22 @@
 <body>
     <p>Hello World</p>
     <p>From Hiyoko3</p>
-</body>
 
+<textarea id="memo-md-field" class="markdown-text active"># hoge
+- a
+- b
+- c
+</textarea>
+
+    <textarea id="todo-md-field" class="markdown-text">
+    # aa
+        ## bb
+</textarea>
+
+<button id="preview-btn">Preview</button>
+
+    <div id="memo-md-preview" class="markdown-preview active"></div>
+
+    <script src="app/modules/preview.js"></script>
+</body>
 </html>
