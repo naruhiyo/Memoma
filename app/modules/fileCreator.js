@@ -15,12 +15,9 @@ const FileCreator = class {
         let pdir = this.dirName + '/' + projectName;
 
         let fnameTails = ['memo', 'note', 'todo'];
-
         fs.access(pdir, (error) => {
             if (error) {
                 if (error.code === "ENOENT") {
-                    return;
-                } else {
                     fs.mkdir(pdir);
 
                     fnameTails.forEach(function (fnameTailsElment) {
@@ -31,10 +28,13 @@ const FileCreator = class {
                         });
                     });
                     return;
+                } else {
+                    return;
                 }
             }
-
         });
+
+
 
 
     }
