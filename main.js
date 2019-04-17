@@ -14,62 +14,7 @@ let mainWindow;
 
 let projectName;
 
-// ElectronのMenuの設定
-const templateMenu = [
-    {
-        label: 'File',
-        submenu: [
-            {
-                label: 'save', click: fileCreator.saveProject(projectName)
-                // レンダラーにhiddenなくしてっていう
-            }
-        ]
-    },
-    {
-        label: 'Edit',
-        submenu: [
-            {
-                role: 'undo',
-            },
-            {
-                role: 'redo',
-            },
-        ]
-    },
-    {
-        label: 'View',
-        submenu: [
-            {
-                label: 'Reload',
-                accelerator: 'CmdOrCtrl+R',
-                click(item, focusedWindow) {
-                    if (focusedWindow) focusedWindow.reload()
-                },
-            },
-            {
-                type: 'separator',
-            },
-            {
-                role: 'resetzoom',
-            },
-            {
-                role: 'zoomin',
-            },
-            {
-                role: 'zoomout',
-            },
-            {
-                type: 'separator',
-            },
-            {
-                role: 'togglefullscreen',
-            },
-            {
-                role: 'toggledevtools',
-            },
-        ]
-    }
-];
+
 
 
 
@@ -90,6 +35,63 @@ app.on('ready', function () {
     });
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
+    // ElectronのMenuの設定
+    const templateMenu = [
+        {
+            label: 'File',
+            submenu: [
+                {
+                    label: 'save', click: fileCreator.saveProject(projectName)
+                    // レンダラーにhiddenなくしてっていう
+                }
+            ]
+        },
+        {
+            label: 'Edit',
+            submenu: [
+                {
+                    role: 'undo',
+                },
+                {
+                    role: 'redo',
+                },
+            ]
+        },
+        {
+            label: 'View',
+            submenu: [
+                {
+                    label: 'Reload',
+                    accelerator: 'CmdOrCtrl+R',
+                    click(item, focusedWindow) {
+                        if (focusedWindow) focusedWindow.reload()
+                    },
+                },
+                {
+                    type: 'separator',
+                },
+                {
+                    role: 'resetzoom',
+                },
+                {
+                    role: 'zoomin',
+                },
+                {
+                    role: 'zoomout',
+                },
+                {
+                    type: 'separator',
+                },
+                {
+                    role: 'togglefullscreen',
+                },
+                {
+                    role: 'toggledevtools',
+                },
+            ]
+        }
+    ];
+
     const menu = Menu.buildFromTemplate(templateMenu);
     Menu.setApplicationMenu(menu);
     var ipc = require('electron').ipcMain;
@@ -99,20 +101,7 @@ app.on('ready', function () {
         projectName = data;
         console.log(data);
     });
-    // // You can obviously give a direct path without use the dialog (C:/Program Files/path/myfileexample.txt)
-    // dialog.showSaveDialog((fileName) => {
-    //     if (fileName === undefined) {
-    //         console.log("You didn't save the file");
-    //         return;
-    //     }
 
-    //     // fileName is a string that contains the path and filename created in the save file dialog.  
-    //     fs.writeFile(fileName, content, (err) => {
-    //         if (err) {
-    //             dialog.showErrorBox("An error ocurred creating the file", err.message);
-    //         }
-    //     });
-    // });
 
 
 

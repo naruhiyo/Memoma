@@ -16,15 +16,27 @@ const FileCreator = class {
 
         let fnameTails = ['memo', 'note', 'todo'];
 
-        fs.mkdir(pdir);
+        fs.access(pdir, (error) => {
+            if (error) {
+                if (error.code === "ENOENT") {
+                    return;
+                } else {
+                    fs.mkdir(pdir);
 
-        fnameTails.forEach(function (fnameTailsElment) {
-            fs.writeFile(pdir + '/' + projectName + '_' + fnameTailsElment + '.md', content, (err) => {
-                if (err) {
-                    dialog.showErrorBox("An error ocurred creating the file", err.message);
+                    fnameTails.forEach(function (fnameTailsElment) {
+                        fs.writeFile(pdir + '/' + projectName + '_' + fnameTailsElment + '.md', content, (err) => {
+                            if (err) {
+                                dialog.showErrorBox("An error ocurred creating the file", err.message);
+                            }
+                        });
+                    });
+                    return;
                 }
-            });
+            }
+
         });
+
+
     }
 };
 module.exports = FileCreator;
