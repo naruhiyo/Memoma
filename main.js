@@ -14,11 +14,6 @@ let mainWindow;
 
 let projectName;
 
-
-
-
-
-
 // 全てのウィンドウが閉じたら終了
 app.on('window-all-closed', function () {
     if (process.platform != 'darwin') {
@@ -41,9 +36,8 @@ app.on('ready', function () {
             label: 'File',
             submenu: [
                 {
-                    label: 'save', click: fileCreator.saveProject(projectName)
-                    // レンダラーにhiddenなくしてっていう
-                }
+                    label: 'save', click: () => onSavePreparation()
+                },
             ]
         },
         {
@@ -63,7 +57,7 @@ app.on('ready', function () {
                 {
                     label: 'Reload',
                     accelerator: 'CmdOrCtrl+R',
-                    click(item, focusedWindow) {
+                    click: (item, focusedWindow) => {
                         if (focusedWindow) focusedWindow.reload()
                     },
                 },
@@ -96,18 +90,20 @@ app.on('ready', function () {
     Menu.setApplicationMenu(menu);
     var ipc = require('electron').ipcMain;
 
-    ipc.on('invokeAction', function (event, data) {
+    ipc.on('onCreateProjectName', function (event, data) {
         event.sender.send('actionReply', data);
         projectName = data;
-        console.log(data);
+        fileCreator.saveProject(projectName);
     });
 
+    /**
+     * [Menu]->[File]->[save]を押した際にrenderer processへ
+     *     イベントを発火させる．
+     */
+    function onSavePreparation() {
+        mainWindow.webContents.send('save-preparation');
+    }
 
-
-
-
-
-    //ウィンドウが閉じられたらアプリも終了
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
