@@ -15,15 +15,15 @@ const FileCreator = class {
         let pdir = this.dirName + '/' + projectName;
 
         let fnameTails = ['memo', 'note', 'todo'];
-        fs.access(pdir, (error) => {
-            if (error) {
-                if (error.code === "ENOENT") {
+        fs.access(pdir, (err) => {
+            if (err) {
+                if (err.code === "ENOENT") {
                     fs.mkdir(pdir);
 
                     fnameTails.forEach(function (fnameTailsElment) {
-                        fs.writeFile(pdir + '/' + projectName + '_' + fnameTailsElment + '.md', content, (err) => {
-                            if (err) {
-                                dialog.showErrorBox("An error ocurred creating the file", err.message);
+                        fs.writeFile(pdir + '/' + projectName + '_' + fnameTailsElment + '.md', content, (errCreateFile) => {
+                            if (errCreateFile) {
+                                dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
                             }
                         });
                     });
