@@ -59,11 +59,12 @@ const projectManager = class {
     }
 
     /**
-     * レンダラープロセス内のmdテキストデータを取得して
-     * 所望の.mdに上書き保存する．
+     * Overwrite .md files. 
+     *     Call from onSaveProject function from main.js.
+     * @param {Object} data contents of markdown contents editing and 
+     *     project name
      */
     saveProject(data) {
-        // レンダラープロセスからmdテキストデータを取得する
         let mdObject = [
             {
                 type: 'memo',
