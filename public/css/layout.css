@@ -7,9 +7,8 @@
 
 html,
 body,
-main,
-div {
-    height: 100%;
+main {
+    height: 100vh;
 }
 
 header,
@@ -17,9 +16,11 @@ footer {
     width: 100%;
     background: #001e43;
     color: white;
+    position: absolute;
 }
 
 header {
+    top: 0;
     padding: 0 16px;
     height: 48px;
     line-height: 48px;
@@ -27,6 +28,7 @@ header {
 }
 
 footer {
+    bottom: 0;
     text-align: center;
     height: 32px;
     line-height: 32px;
@@ -34,6 +36,7 @@ footer {
 }
 
 main.container {
+    padding-top: 48px;
     background: #404040;
 }
 
