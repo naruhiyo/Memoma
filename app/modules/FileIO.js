@@ -36,7 +36,6 @@ const FileIO = function () {
             }
 
             // parse read file.
-            console.log(data.toString());
             const json = JSON.parse(data.toString());
             this.findFields(json);
         })
@@ -63,6 +62,8 @@ const FileIO = function () {
                 }
             });
         });
+
+        _this.addProjectNameToField(json.projectName, document.getElementById('project-name'));
     };
 
     this.embedToField = (fileName, dom) => {
@@ -75,7 +76,11 @@ const FileIO = function () {
             // insert text.
             dom.value = data.toString();
         })
-    }
+    };
+
+    this.addProjectNameToField = (projectName, dom) => {
+        dom.dataset.projectName = projectName;
+    };
 };
 
 module.exports = FileIO;

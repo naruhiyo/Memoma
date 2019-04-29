@@ -148,7 +148,14 @@ app.on('ready', async () => {
      * {{ :Project-Name }}_todo.mdの3ファイルを上書き保存する．
      */
     function onSaveProject() {
-        projectManager.saveProject();
+        let promise = Promise.resolve();
+        promise.then(() => {
+            mainWindow.webContents.send('onSaveProject');
+        }).then(() => {
+            ipc.on('onSendProjectData', function (event, data) {
+                projectManager.saveProject(data);
+            });
+        });
     }
 
     function onOpenProject() {
