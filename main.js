@@ -44,7 +44,7 @@ app.on('ready', async () => {
         mainWindow.webContents.send('toggleMdEditor', {});
     });
 
-    globalShortcut.register('CommandOrControl+T', () => {
+    globalShortcut.register('CommandOrControl+Tab', () => {
         // request to change editor mode.
         mainWindow.webContents.send('changeMdEditor', {});
     });
