@@ -55,11 +55,15 @@ const MdEditor = function (document) {
         this.activePreview.classList.toggle('d-none');
     };
 
-    this.next = () => {
+    this.move = (target) => {
         const index = this.activeMarkdown.dataset.index;
 
         // update current field index
-        this.currentNodeIndex = (index < this.maxItemSize) ? index : 0;
+        if (target === 'next') {
+            this.currentNodeIndex = (index < this.maxItemSize) ? index : 0;
+        } else {
+            this.currentNodeIndex = (index > 1) ? index - 2 : this.maxItemSize - 1;
+        }
 
         // remove active class from current target dom.
         this.activeMarkdown.classList.remove('active');

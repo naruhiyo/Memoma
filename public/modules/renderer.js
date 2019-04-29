@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     ipcRenderer.on('changeMdEditor', (e, data) => {
-        editor.next();
+        editor.move(data.target);
     });
 
     ipcRenderer.on('toggleModalDialog', (e, data) => {
