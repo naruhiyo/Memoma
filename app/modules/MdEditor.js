@@ -77,6 +77,9 @@ const MdEditor = function (document) {
         this.activePreview.classList.add('active');
         this.activeHeader.classList.add('active');
 
+        // focus to new markdown editor
+        this.activeMarkdown.focus();
+
         this.activeMarkdown.removeAttribute('readonly');
     };
 };
