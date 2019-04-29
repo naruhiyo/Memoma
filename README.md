@@ -16,3 +16,7 @@ A memo-app
 └ style.css
 ```
 
+## Contributor
+
+- [narugit](https://github.com/narugit)
+- [hiyoko3](https://github.com/hiyoko3)

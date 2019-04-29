@@ -1,4 +1,6 @@
 /**
+ * Backend Modules
+ *
  * The Controller of markdown editor
  *
  * === Functions ===
@@ -55,6 +57,7 @@ const MdEditor = function (document) {
     this.change = () => {
         const index = this.activeMarkdown.dataset.index;
 
+        // update current field index
         this.currentNodeIndex = (index < this.maxItemSize) ? index : 0;
 
         // remove active class from current target dom.

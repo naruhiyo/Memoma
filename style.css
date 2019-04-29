@@ -9,6 +9,18 @@ body {
     box-sizing: border-box;
 }
 
+
+.container, footer {
+    padding: 5px 10px;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+
 /**
  * Display Styles
  */
