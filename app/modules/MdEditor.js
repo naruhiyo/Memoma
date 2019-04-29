@@ -55,7 +55,7 @@ const MdEditor = function (document) {
         this.activePreview.classList.toggle('d-none');
     };
 
-    this.change = () => {
+    this.next = () => {
         const index = this.activeMarkdown.dataset.index;
 
         // update current field index
