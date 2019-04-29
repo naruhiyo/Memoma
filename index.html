@@ -5,6 +5,7 @@
     <title>Memoma</title>
     <link type="text/css" rel="stylesheet" href="style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
 
@@ -13,7 +14,27 @@
         <h1>Memoma</h1>
     </div>
     <div class="quick-icons">
-        <h1>hoi</h1>
+        <button id="save-btn">
+            <div class="cp-tooltip">
+                <span data-tooltip="保存" class="cp-tooltip-text">
+                    <i class="fas fa-save"></i>
+                </span>
+            </div>
+        </button>
+        <button id="toggle-btn">
+            <div class="cp-tooltip">
+                <span data-tooltip="切り替え" class="cp-tooltip-text">
+                <i class="fas fa-sync-alt"></i>
+                </span>
+            </div>
+        </button>
+        <button id="change-btn">
+            <div class="cp-tooltip">
+                <span data-tooltip="移動" class="cp-tooltip-text">
+                    <i class="fas fa-recycle"></i>
+                </span>
+            </div>
+        </button>
     </div>
 </header>
 <main id="main" class="container">

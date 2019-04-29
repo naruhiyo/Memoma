@@ -37,6 +37,11 @@ main.container {
     background: #404040;
 }
 
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 /* Display */
 .d-hidden {
     display: none;

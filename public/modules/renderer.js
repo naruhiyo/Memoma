@@ -16,7 +16,7 @@ const editor = new mdEditor(document);
 const fileIO = new FileIO();
 
 document.addEventListener('DOMContentLoaded', async () => {
-    await fileIO.fileOpen();
+    // await fileIO.fileOpen();
     await editor.init();
 
     ipcRenderer.on('toggleMdEditor', (e, data) => {
@@ -25,5 +25,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     ipcRenderer.on('changeMdEditor', (e, data) => {
         editor.change();
+    });
+
+
+    const saveBtn = document.querySelector('#save-btn i');
+    const toggleBtn = document.querySelector('#toggle-btn i');
+    const changeBtn = document.querySelector('#change-btn i');
+
+    saveBtn.addEventListener('click', () => {
+
+    });
+
+    toggleBtn.addEventListener('click', () => {
+        editor.toggle()
+    });
+
+    changeBtn.addEventListener('click', () => {
+        editor.change()
     });
 });
