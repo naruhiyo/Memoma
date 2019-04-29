@@ -2,6 +2,7 @@
 
 // global module
 const { app, globalShortcut, BrowserWindow, Menu, dialog, shell } = require('electron');
+const localShortcut = require("electron-localshortcut");
 const ProjectManager = require('./app/modules/projectManager.js');
 
 
@@ -39,12 +40,12 @@ app.on('ready', async () => {
     });
 
     // Shortcut command event
-    globalShortcut.register('CommandOrControl+P', () => {
+    localShortcut.register(mainWindow, 'CommandOrControl+P', () => {
         // request to toggle editor mode.
         mainWindow.webContents.send('toggleMdEditor', {});
     });
 
-    globalShortcut.register('CommandOrControl+T', () => {
+    localShortcut.register(mainWindow, 'CommandOrControl+T', () => {
         // request to change editor mode.
         mainWindow.webContents.send('changeMdEditor', {});
     });
