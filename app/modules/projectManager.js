@@ -16,13 +16,18 @@ const projectManager = class {
     createProject(projectName, projectPath) {
         this.projectName = projectName;
         this.mdDir = this.dirName + '/.memoma/' + projectName;
-
         let projectFile = projectPath + '/' + projectName + '.mmm';
 
-        fs.access(this.mdDir, (err) => {
+        let _mdDir = this.mdDir;
+
+        fs.access(_mdDir, (err) => {
             if (err) {
-                if (err.code === "ENOENT") {
-                    fs.mkdir(this.mdDir);
+                if (err.code === 'ENOENT') {
+                    fs.mkdir(_mdDir, (err) => {
+                        if (err) {
+                            console.warn(err.message);
+                        }
+                    });
 
                     // .mmmファイルの作成
                     let contentProjct = projectPath;
@@ -33,10 +38,17 @@ const projectManager = class {
                     });
 
                     // .mdファイルの作成
+                    // let fnameTails = ['memo', 'note', 'todo'];
+                    // fnameTails.forEach(function (fnameTailsElment) {
+                    //     fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', (errCreateFile) => {
+                    //         if (errCreateFile) {
+                    //             dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
+                    //         }
+                    //     });
+                    // });
                     let fnameTails = ['memo', 'note', 'todo'];
-                    let _mdDir = this.mdDir;
                     fnameTails.forEach(function (fnameTailsElment) {
-                        fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', (errCreateFile) => {
+                        fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', '', (errCreateFile) => {
                             if (errCreateFile) {
                                 dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
                             }
@@ -75,7 +87,7 @@ const projectManager = class {
         let _mdDir = this.mdDir;
         let _projectName = this.projectName;
         mdObject.forEach(function (mdObj) {
-            fs.writeFile(_mdDir + '/' + _projectName + '_' + mdObj.type + '.md', mdObj.content, (errCreateFile) => {
+            fs.writeFile(_mdDir + '/' + _projectName + '_' + mdObj.type + '.md', mdObj.content, function (errCreateFile) {
                 if (errCreateFile) {
                     dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
                 }
