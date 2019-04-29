@@ -1,0 +1,53 @@
+/**
+ * Global Style
+ */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/**
+ * Display Styles
+ */
+.d-hidden {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.d-flex .box {
+    width: 30%;
+}
+
+textarea.markdown-text {
+    font-size: 14px;
+    width: 100%;
+    height: 300px;
+    resize: vertical;
+}
+
+textarea.markdown-text:focus {
+    outline: none;
+}
+
+.markdown-preview {
+    border: 2px solid #ccc;
+    min-height: 300px;
+    width: 100%;
+    height: 300px;
+}
+
+/* active style */
+.markdown-text.active {
+    border: 2px solid red;
+}
+
+.markdown-preview.active {
+    border: 2px solid red;
+}
