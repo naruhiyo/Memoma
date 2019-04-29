@@ -55,6 +55,11 @@ app.on('ready', async () => {
             label: 'File',
             submenu: [
                 {
+                    label: 'Open Project',
+                    accelerator: 'CmdOrCtrl+O',
+                    click: () => onOpenProject()
+                },
+                {
                     label: 'Create New Project',
                     accelerator: 'CmdOrCtrl+Shift+S',
                     click: () => onCreateNewProjectPreparation()
@@ -155,7 +160,19 @@ app.on('ready', async () => {
      */
     function onSaveProject() {
         mainWindow.webContents.send('toggleModalDialog', {});
-        projectManager.saveProject();
+
+        const promise = Promise.resolve();
+        promise.then(() => {
+            mainWindow.webContents.send('onSaveProject');
+        }).then(() => {
+            ipc.on('onSendProjectData', function (event, data) {
+                projectManager.saveProject(data);
+            });
+        });
+    }
+
+    function onOpenProject() {
+        mainWindow.webContents.send('onOpenProject');
     }
 
     mainWindow.on('closed', function () {
