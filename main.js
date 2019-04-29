@@ -159,8 +159,6 @@ app.on('ready', async () => {
      * {{ :Project-Name }}_todo.mdの3ファイルを上書き保存する．
      */
     function onSaveProject() {
-        mainWindow.webContents.send('toggleModalDialog', {});
-
         const promise = Promise.resolve();
         promise.then(() => {
             mainWindow.webContents.send('onSaveProject');
