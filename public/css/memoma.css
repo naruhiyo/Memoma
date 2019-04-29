@@ -1,3 +1,25 @@
+
+/* icons */
+button {
+    height: 100%;
+    width: 40px;
+    background: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+button i {
+    color: white;
+    font-size: 2em;
+}
+
+
+button i:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+/* main app */
 .box {
     width: 100%;
     border-right: 1px solid black;
@@ -28,13 +50,10 @@ textarea.markdown-text,
 }
 
 textarea.markdown-text {
+    padding: 5px;
     font-size: 1em;
     resize: vertical;
     border: none;
-}
-
-textarea.markdown-text:focus {
-    outline: none;
 }
 
 .markdown-preview {
@@ -54,4 +73,35 @@ textarea.markdown-text:focus {
 
 .box-header.active {
     text-decoration: underline;
+}
+
+/**
+ * Components
+ */
+
+/* tooltip */
+.cp-tooltip {
+    display: inline-block;
+}
+.cp-tooltip-text {
+    position: relative;
+    cursor: pointer;
+}
+.cp-tooltip-text::after {
+    position: absolute;
+    transition: all 0.3s ease 0s;
+    opacity: 0;
+    top: 0px;/*HOVERのスタート位置*/
+    left: 0px;
+    display: block;
+    padding: 0.2em 0.5em;
+    content: attr(data-tooltip);
+    white-space: nowrap;
+    color: #ffffff;
+    border-radius: 6px;
+    background: black;
+}
+.cp-tooltip-text:hover::after {
+    top: 26px;/*HOVER位置*/
+    opacity: 1;
 }
