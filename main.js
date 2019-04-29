@@ -50,6 +50,11 @@ app.on('ready', async () => {
             label: 'File',
             submenu: [
                 {
+                    label: 'Open Project',
+                    accelerator: 'CmdOrCtrl+O',
+                    click: () => onOpenProject()
+                },
+                {
                     label: 'Create New Project',
                     accelerator: 'CmdOrCtrl+Shift+S',
                     click: () => onCreateNewProjectPreparation()
@@ -144,6 +149,10 @@ app.on('ready', async () => {
      */
     function onSaveProject() {
         projectManager.saveProject();
+    }
+
+    function onOpenProject() {
+        mainWindow.webContents.send('onOpenProject');
     }
 
     mainWindow.on('closed', function () {

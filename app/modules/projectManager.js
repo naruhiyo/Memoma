@@ -30,7 +30,10 @@ const projectManager = class {
                     });
 
                     // .mmmファイルの作成
-                    let contentProjct = projectPath;
+                    let contentProjct = `{"projectName": "${projectName}",\n
+                    "filePath": ".memoma/${projectName}"\n
+                    }`;
+
                     fs.writeFile(projectFile, contentProjct, (errCreateProject) => {
                         if (errCreateProject) {
                             dialog.showErrorBox("An error ocurred creating the file", errCreateProject.message);
@@ -38,14 +41,6 @@ const projectManager = class {
                     });
 
                     // .mdファイルの作成
-                    // let fnameTails = ['memo', 'note', 'todo'];
-                    // fnameTails.forEach(function (fnameTailsElment) {
-                    //     fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', (errCreateFile) => {
-                    //         if (errCreateFile) {
-                    //             dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
-                    //         }
-                    //     });
-                    // });
                     let fnameTails = ['memo', 'note', 'todo'];
                     fnameTails.forEach(function (fnameTailsElment) {
                         fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', '', (errCreateFile) => {
@@ -94,6 +89,10 @@ const projectManager = class {
             });
         });
 
+    }
+
+    openProject() {
+        fileIO.fileOpen();
     }
 };
 module.exports = projectManager;
