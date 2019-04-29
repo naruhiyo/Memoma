@@ -1,5 +1,7 @@
 # Memoma
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A memo-app by electron app.
 
 ## Directory
@@ -20,3 +22,7 @@ A memo-app by electron app.
 
 - [narugit](https://github.com/narugit)
 - [hiyoko3](https://github.com/hiyoko3)
+
+## License
+
+[MIT](https://github.com/narugit/Memoma/blob/master/LICENSE)
