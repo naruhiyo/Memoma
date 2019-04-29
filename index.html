@@ -1,14 +1,50 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ja">
 <head>
     <meta charset="utf-8">
     <title>ElectronApp</title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
-    <p>Hello World</p>
-    <p>From Hiyoko3</p>
-</body>
 
+<main id="main">
+    <h1>Title</h1>
+    <div id="md-fields" class="d-flex">
+
+        <div class="box">
+            <h3>Memo</h3>
+<textarea id="memo-md-field" class="markdown-text active" tabindex="-1" data-index="1"># hoge
+- a
+- b
+- c
+</textarea>
+            <div id="memo-md-preview" class="markdown-preview active d-hidden"></div>
+        </div>
+
+        <div class="box">
+            <h3>Note</h3>
+        <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2"># hoge
+- d
+- e
+- f
+</textarea>
+            <div id="note-md-preview" class="markdown-preview d-hidden"></div>
+        </div>
+
+        <div class="box">
+            <h3>Todo</h3>
+        <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3"># hoge
+- g
+- h
+- i
+</textarea>
+            <div id="todo-md-preview" class="markdown-preview d-hidden"></div>
+        </div>
+    </div>
+
+</main>
+
+<script src="public/modules/renderer.js"></script>
+<script src="app/modules/MdEditor.js"></script>
+</body>
 </html>
