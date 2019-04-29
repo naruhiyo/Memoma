@@ -1,5 +1,29 @@
+/**
+ * Global Style
+ */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/**
+ * Display Styles
+ */
 .d-hidden {
     display: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+textarea.markdown-text {
+    padding: 5px;
+    margin: auto 10px;
+    resize: vertical;
 }
 
 .markdown-preview {
