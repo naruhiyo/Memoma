@@ -11,6 +11,6 @@ saveBtn.addEventListener('click', function () {
     document.getElementById('projectSaver').hidden = true;
 });
 
-ipc.on('save-preparation', () => {
+ipc.on('onProjectNameInfill', () => {
     document.getElementById('projectSaver').hidden = false;
 });
