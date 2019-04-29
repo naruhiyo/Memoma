@@ -55,6 +55,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     changeBtn.addEventListener('click', () => {
-        editor.change()
+        editor.move('next')
     });
 });
