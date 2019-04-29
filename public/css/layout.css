@@ -46,7 +46,7 @@ button:focus {
 }
 
 /* Display */
-.d-hidden {
+.d-none {
     display: none;
 }
 
@@ -57,4 +57,28 @@ button:focus {
 
 .justify-between {
     justify-content: space-between;
+}
+
+.form-group {
+    padding: 10px;
+    margin: 5px auto;
+    width: 100%;
+    text-align: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.form-group input {
+    padding: 5px;
+    font-size: 1em;
+}
+
+.form-group button {
+    border: 1px solid grey;
+    font-size: 1.5em;
+    padding: 5px 10px;
+    width: 100px;
 }

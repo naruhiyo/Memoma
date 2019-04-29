@@ -113,13 +113,19 @@ app.on('ready', async () => {
     ];
 
     const menu = Menu.buildFromTemplate(templateMenu);
+
     Menu.setApplicationMenu(menu);
-    let ipc = require('electron').ipcMain;
+
+    const ipc = require('electron').ipcMain;
 
     ipc.on('onCreateProjectName', function (event, data) {
         event.sender.send('actionReply', data);
         projectName = data;
         projectManager.createProject(projectName, projectPath);
+    });
+
+    ipc.on('onSaveFromBtn', function (event, data) {
+        onSaveProject()
     });
 
     /**
@@ -148,6 +154,7 @@ app.on('ready', async () => {
      * {{ :Project-Name }}_todo.mdの3ファイルを上書き保存する．
      */
     function onSaveProject() {
+        mainWindow.webContents.send('toggleModalDialog', {});
         projectManager.saveProject();
     }
 

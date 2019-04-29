@@ -16,8 +16,16 @@ const editor = new mdEditor(document);
 const fileIO = new FileIO();
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // await fileIO.fileOpen();
+    await fileIO.fileOpen();
     await editor.init();
+
+    const modalWindow = document.querySelector('#project-saver.modal');
+
+    const modalCloseBtn = document.querySelector('#modal-close');
+    const saveBtn = document.querySelector('#save-btn i');
+    const toggleBtn = document.querySelector('#toggle-btn i');
+    const changeBtn = document.querySelector('#change-btn i');
+
 
     ipcRenderer.on('toggleMdEditor', (e, data) => {
         editor.toggle();
@@ -27,13 +35,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         editor.change();
     });
 
+    ipcRenderer.on('toggleModalDialog', (e, data) => {
+        modalWindow.classList.toggle('d-none');
+    });
 
-    const saveBtn = document.querySelector('#save-btn i');
-    const toggleBtn = document.querySelector('#toggle-btn i');
-    const changeBtn = document.querySelector('#change-btn i');
+    modalCloseBtn.addEventListener('click', () => {
+        modalWindow.classList.toggle('d-none');
+    });
 
     saveBtn.addEventListener('click', () => {
-
+        ipcRenderer.send('onSaveFromBtn', {});
     });
 
     toggleBtn.addEventListener('click', () => {
