@@ -9,10 +9,16 @@ let BrowserWindow = electron.BrowserWindow;
 const FileCreator = require('./app/modules/fileCreator.js');
 const fileCreator = new FileCreator(__dirname);
 
+const ProjectOpener = require('./app/modules/projectOpener.js');
+
+let remote = require('electron').remote;
+const { dialog } = require('electron');
+
 // メインウィンドウはGCされないようにグローバル宣言
 let mainWindow;
 
 let projectName;
+let projectPath;
 
 // 全てのウィンドウが閉じたら終了
 app.on('window-all-closed', function () {
@@ -36,7 +42,14 @@ app.on('ready', function () {
             label: 'File',
             submenu: [
                 {
-                    label: 'save', click: () => onSavePreparation()
+                    label: 'Create New Project',
+                    accelerator: 'CmdOrCtrl+Shift+S',
+                    click: () => onCreateNewProjectPreparation()
+                },
+                {
+                    label: 'Save Project',
+                    accelerator: 'CmdOrCtrl+S',
+                    click: () => onSaveProject()
                 },
             ]
         },
@@ -88,20 +101,41 @@ app.on('ready', function () {
 
     const menu = Menu.buildFromTemplate(templateMenu);
     Menu.setApplicationMenu(menu);
-    var ipc = require('electron').ipcMain;
+    let ipc = require('electron').ipcMain;
 
     ipc.on('onCreateProjectName', function (event, data) {
         event.sender.send('actionReply', data);
         projectName = data;
-        fileCreator.saveProject(projectName);
+        fileCreator.saveProject(projectName, projectPath);
     });
 
     /**
-     * [Menu]->[File]->[save]を押した際にrenderer processへ
+     * [Menu]->[File]->[CreateNewProject]を押した際にrenderer processへ
      *     イベントを発火させる．
      */
-    function onSavePreparation() {
-        mainWindow.webContents.send('save-preparation');
+    function onCreateNewProjectPreparation() {
+        let promise = Promise.resolve();
+        promise.then(() => {
+            let projectPathSaveOption = {
+                properties: ['openDirectory']
+            };
+
+            projectPath = dialog.showOpenDialog(projectPathSaveOption);
+        }).then(() => {
+            if (projectPath !== undefined) {
+                mainWindow.webContents.send('onProjectNameInfill');
+            }
+        });
+
+    }
+
+    /**
+     * [Menu]->[File]->[SaveProject]を押した際にプロジェクトを上書き保存する．
+     * 具体的には、{{ :Project-Name }}_memo.md, {{ :Project-Name }}_note.md, 
+     * {{ :Project-Name }}_todo.mdの3ファイルを上書き保存する．
+     */
+    function onSaveProject() {
+
     }
 
     mainWindow.on('closed', function () {
