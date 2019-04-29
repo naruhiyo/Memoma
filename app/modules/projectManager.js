@@ -16,16 +16,24 @@ const projectManager = class {
     createProject(projectName, projectPath) {
         this.projectName = projectName;
         this.mdDir = this.dirName + '/.memoma/' + projectName;
-
         let projectFile = projectPath + '/' + projectName + '.mmm';
 
-        fs.access(this.mdDir, (err) => {
+        let _mdDir = this.mdDir;
+
+        fs.access(_mdDir, (err) => {
             if (err) {
-                if (err.code === "ENOENT") {
-                    fs.mkdir(this.mdDir);
+                if (err.code === 'ENOENT') {
+                    fs.mkdir(_mdDir, (err) => {
+                        if (err) {
+                            console.warn(err.message);
+                        }
+                    });
 
                     // .mmmファイルの作成
-                    let contentProjct = projectPath;
+                    let contentProjct = `{"projectName": "${projectName}",\n
+                    "filePath": ".memoma/${projectName}"\n
+                    }`;
+
                     fs.writeFile(projectFile, contentProjct, (errCreateProject) => {
                         if (errCreateProject) {
                             dialog.showErrorBox("An error ocurred creating the file", errCreateProject.message);
@@ -34,9 +42,8 @@ const projectManager = class {
 
                     // .mdファイルの作成
                     let fnameTails = ['memo', 'note', 'todo'];
-                    let _mdDir = this.mdDir;
                     fnameTails.forEach(function (fnameTailsElment) {
-                        fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', (errCreateFile) => {
+                        fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', '', (errCreateFile) => {
                             if (errCreateFile) {
                                 dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
                             }
@@ -52,36 +59,41 @@ const projectManager = class {
     }
 
     /**
-     * レンダラープロセス内のmdテキストデータを取得して
-     * 所望の.mdに上書き保存する．
+     * Overwrite .md files. 
+     *     Call from onSaveProject function from main.js.
+     * @param {Object} data contents of markdown contents editing and 
+     *     project name
      */
-    saveProject() {
-        // レンダラープロセスからmdテキストデータを取得する
+    saveProject(data) {
         let mdObject = [
             {
                 type: 'memo',
-                content: 'hoge' //取得したデータここに書く
+                content: data.memo
             },
             {
                 type: 'note',
-                content: 'fuga'//取得したデータここに書く
+                content: data.note
             },
             {
                 type: 'todo',
-                content: 'piyo'//取得したデータここに書く
+                content: data.todo
             }
         ];
 
-        let _mdDir = this.mdDir;
-        let _projectName = this.projectName;
+        let _mdDir = __dirname + '/../../.memoma/' + data.projectName;
+        let _projectName = data.projectName;
         mdObject.forEach(function (mdObj) {
-            fs.writeFile(_mdDir + '/' + _projectName + '_' + mdObj.type + '.md', mdObj.content, (errCreateFile) => {
+            fs.writeFile(_mdDir + '/' + _projectName + '_' + mdObj.type + '.md', mdObj.content, function (errCreateFile) {
                 if (errCreateFile) {
                     dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
                 }
             });
         });
 
+    }
+
+    openProject() {
+        fileIO.fileOpen();
     }
 };
 module.exports = projectManager;

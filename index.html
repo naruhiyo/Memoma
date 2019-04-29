@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="utf-8">
     <title>Memoma</title>
+
     <link type="text/css" rel="stylesheet" href="style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
+
 <body>
 
 <header class="d-flex justify-between">
@@ -40,6 +43,7 @@
 
 <main id="main" class="container">
     <!-- Modal Window -->
+    <div id="project-name" data-project-name=""></div>
     <div id="project-saver" class="modal d-none">
         <div class="modal-body">
             <div class="modal-window">
@@ -72,13 +76,13 @@
         <div class="box">
             <h3 class="box-header">Note</h3>
             <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2" readonly># hoge 2</textarea>
-            <div id="note-md-preview" class="markdown-preview d-none"></div>
+            <div id="note-md-preview" class="markdown-preview d-none markdown-body"></div>
         </div>
 
         <div class="box">
             <h3 class="box-header">Todo</h3>
             <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3" readonly># hoge 3</textarea>
-            <div id="todo-md-preview" class="markdown-preview d-none"></div>
+            <div id="todo-md-preview" class="markdown-preview d-none markdown-body"></div>
         </div>
     </div>
 </main>
@@ -89,6 +93,8 @@
 
 <script src="public/modules/renderer.js"></script>
 <script src="app/modules/MdEditor.js"></script>
+            <script src="app/modules/MdSaver.js"></script>
 <script src='./public/modules/projectNameCreator.js'></script>
 </body>
+
 </html>

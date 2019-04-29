@@ -45,7 +45,7 @@ const FileIO = function () {
         const projectPath = json.filePath;
         const _this = this;
 
-        fs.readdir(projectPath, function(err, files){
+        fs.readdir(projectPath, function (err, files) {
             if (err) throw err;
 
             files.forEach(file => {
@@ -62,6 +62,8 @@ const FileIO = function () {
                 }
             });
         });
+
+        _this.addProjectNameToField(json.projectName, document.getElementById('project-name'));
     };
 
     this.embedToField = (fileName, dom) => {
@@ -74,7 +76,11 @@ const FileIO = function () {
             // insert text.
             dom.value = data.toString();
         })
-    }
+    };
+
+    this.addProjectNameToField = (projectName, dom) => {
+        dom.dataset.projectName = projectName;
+    };
 };
 
 module.exports = FileIO;
