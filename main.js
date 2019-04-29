@@ -6,10 +6,8 @@ let app = electron.app;
 let Menu = electron.Menu;
 let BrowserWindow = electron.BrowserWindow;
 
-const FileCreator = require('./app/modules/fileCreator.js');
-const fileCreator = new FileCreator(__dirname);
-
-const ProjectOpener = require('./app/modules/projectOpener.js');
+const ProjectManager = require('./app/modules/projectManager.js');
+const projectManager = new ProjectManager(__dirname);
 
 let remote = require('electron').remote;
 const { dialog } = require('electron');
@@ -106,7 +104,7 @@ app.on('ready', function () {
     ipc.on('onCreateProjectName', function (event, data) {
         event.sender.send('actionReply', data);
         projectName = data;
-        fileCreator.saveProject(projectName, projectPath);
+        projectManager.createProject(projectName, projectPath);
     });
 
     /**
@@ -135,7 +133,7 @@ app.on('ready', function () {
      * {{ :Project-Name }}_todo.mdの3ファイルを上書き保存する．
      */
     function onSaveProject() {
-
+        projectManager.saveProject();
     }
 
     mainWindow.on('closed', function () {
