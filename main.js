@@ -20,6 +20,7 @@ app.on('ready', async () => {
         width: 800,
         height: 600
     });
+
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
     // App exit.
@@ -31,10 +32,10 @@ app.on('ready', async () => {
     globalShortcut.register('CommandOrControl+P', () => {
         // request to toggle editor mode.
         mainWindow.webContents.send('toggleMdEditor', {});
-    })
+    });
 
     globalShortcut.register('CommandOrControl+T', () => {
         // request to change editor mode.
         mainWindow.webContents.send('changeMdEditor', {});
-    })
+    });
 });
