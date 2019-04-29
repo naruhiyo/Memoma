@@ -51,8 +51,8 @@ const MdEditor = function (document) {
     this.toggle = () => {
         this.convert();
 
-        this.activeMarkdown.classList.toggle('d-hidden');
-        this.activePreview.classList.toggle('d-hidden');
+        this.activeMarkdown.classList.toggle('d-none');
+        this.activePreview.classList.toggle('d-none');
     };
 
     this.change = () => {

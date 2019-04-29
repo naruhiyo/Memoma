@@ -12,7 +12,6 @@ button i {
     font-size: 2em;
 }
 
-
 button i:hover {
     cursor: pointer;
     opacity: .8;
@@ -87,15 +86,17 @@ textarea.markdown-text[readonly] {
 .cp-tooltip {
     display: inline-block;
 }
+
 .cp-tooltip-text {
     position: relative;
     cursor: pointer;
 }
+
 .cp-tooltip-text::after {
     position: absolute;
     transition: all 0.3s ease 0s;
     opacity: 0;
-    top: 0px;/*HOVERのスタート位置*/
+    top: 0px; /*HOVERのスタート位置*/
     left: 0px;
     display: block;
     padding: 0.2em 0.5em;
@@ -105,8 +106,9 @@ textarea.markdown-text[readonly] {
     border-radius: 6px;
     background: black;
 }
+
 .cp-tooltip-text:hover::after {
-    top: 26px;/*HOVER位置*/
+    top: 26px; /*HOVER位置*/
     opacity: 1;
 }
 
@@ -114,4 +116,57 @@ textarea.markdown-text[readonly] {
 footer a {
     color: white;
     text-decoration: none;
+}
+
+/* modal dialog */
+.modal .modal-body {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 100000
+}
+
+.modal .modal-window {
+    position: relative;
+    z-index: 100001;
+    animation: fadein .3s 1, zoomin .3s 1;
+}
+
+.modal .modal-label {
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    background: black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all .2s ease;
+    color: white;
+}
+
+.modal-inner {
+    width: 80vw;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.modal-window {
+    animation: zoomout .2s 1 forwards;
 }
