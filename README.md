@@ -1,6 +1,6 @@
 # Memoma
 
-A memo-app
+A memo-app by electron app.
 
 ## Directory
 
