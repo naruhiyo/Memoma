@@ -4,11 +4,19 @@
     <meta charset="utf-8">
     <title>Memoma</title>
     <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Roboto" rel="stylesheet">
 </head>
 <body>
 
+<header class="d-flex justify-between">
+    <div class="title">
+        <h1>Memoma</h1>
+    </div>
+    <div class="quick-icons">
+        <h1>hoi</h1>
+    </div>
+</header>
 <main id="main" class="container">
-    <h1>Title</h1>
     <div id="projectSaver" hidden>
         <div>
             <label for="projectName_txtbox" style="font-weight: bold">Project Name: </label>
@@ -17,38 +25,24 @@
         <button id="save_btn">save</button>
     </div>
     <div id="md-fields" class="d-flex">
-
         <div class="box">
-            <h3>Memo</h3>
-<textarea id="memo-md-field" class="markdown-text active" tabindex="-1" data-index="1"># hoge
-- a
-- b
-- c
-</textarea>
-            <div id="memo-md-preview" class="markdown-preview active d-hidden"></div>
+            <h3 class="box-header active">Memo</h3>
+            <textarea id="memo-md-field" class="markdown-text active" tabindex="-1" data-index="1"># hoge 1</textarea>
+            <div id="memo-md-preview" class="markdown-preview active d-hidden markdown-body"></div>
         </div>
 
         <div class="box">
-            <h3>Note</h3>
-        <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2"># hoge
-- d
-- e
-- f
-</textarea>
+            <h3 class="box-header">Note</h3>
+            <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2"># hoge 2</textarea>
             <div id="note-md-preview" class="markdown-preview d-hidden"></div>
         </div>
 
         <div class="box">
-            <h3>Todo</h3>
-        <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3"># hoge
-- g
-- h
-- i
-</textarea>
+            <h3 class="box-header">Todo</h3>
+            <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3"># hoge 3</textarea>
             <div id="todo-md-preview" class="markdown-preview d-hidden"></div>
         </div>
     </div>
-
 </main>
 
 <footer>
