@@ -1,8 +1,7 @@
 'use strict';
 
 // global module
-const { app, globalShortcut, BrowserWindow, Menu, dialog, shell } = require('electron');
-const localShortcut = require("electron-localshortcut");
+const { app, BrowserWindow, Menu, dialog, shell } = require('electron');
 const ProjectManager = require('./app/modules/projectManager.js');
 
 
@@ -14,7 +13,7 @@ let projectPath;
 
 // Window closed events
 app.on('window-all-closed', function () {
-    if (process.platform != 'darwin') {
+    if (process.platform !== 'darwin') {
         app.quit();
     }
 });
@@ -77,8 +76,22 @@ app.on('ready', async () => {
             submenu: [
                 {
                     label: 'Move to Next Tab',
-                    accelerator: 'CmdOrCtrl+Tab',
-                    click: () => mainWindow.webContents.send('changeMdEditor', {})
+                    accelerator: process.platform !== 'darwin' ? 'CmdOrCtrl+Tab': 'CmdOrCtrl+T',
+                    click: () => mainWindow.webContents.send('changeMdEditor', {
+                        target: 'next'
+                    })
+                }
+            ]
+        },
+        {
+            label: 'Move Back',
+            submenu: [
+                {
+                    label: 'Back to Prev Tab',
+                    accelerator: process.platform !== 'darwin' ? 'CmdOrCtrl+Shift+Tab': 'CmdOrCtrl+Shift+T',
+                    click: () => mainWindow.webContents.send('changeMdEditor', {
+                        target: 'prev'
+                    })
                 }
             ]
         },
@@ -90,7 +103,6 @@ app.on('ready', async () => {
                     accelerator: 'CmdOrCtrl+P',
                     click: () => mainWindow.webContents.send('toggleMdEditor', {})
                 }
-
             ]
         }
     ];
