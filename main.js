@@ -1,7 +1,7 @@
 'use strict';
 
 // global module
-const { app, globalShortcut, BrowserWindow, Menu, remote, dialog } = require('electron');
+const { app, globalShortcut, BrowserWindow, Menu, dialog, shell } = require('electron');
 const ProjectManager = require('./app/modules/projectManager.js');
 
 
@@ -27,6 +27,11 @@ app.on('ready', async () => {
     });
 
     mainWindow.loadURL('file://' + __dirname + '/index.html');
+
+    mainWindow.webContents.on('new-window', (event, url) => {
+        event.preventDefault();
+        shell.openExternal(url);
+    });
 
     // App exit.
     mainWindow.on('closed', () => {

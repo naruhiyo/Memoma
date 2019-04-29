@@ -66,6 +66,8 @@ const MdEditor = function (document) {
         this.activePreview.classList.remove('active');
         this.activeHeader.classList.remove('active');
 
+        this.activeMarkdown.setAttribute('readonly', true);
+
         // add active class to new target dom.
         this.activeMarkdown = this.boxes[this.currentNodeIndex].querySelector('.markdown-text');
         this.activePreview = this.boxes[this.currentNodeIndex].querySelector('.markdown-preview');
@@ -74,6 +76,8 @@ const MdEditor = function (document) {
         this.activeMarkdown.classList.add('active');
         this.activePreview.classList.add('active');
         this.activeHeader.classList.add('active');
+
+        this.activeMarkdown.removeAttribute('readonly');
     };
 };
 
