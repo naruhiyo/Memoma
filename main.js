@@ -14,7 +14,7 @@ app.on('window-all-closed', () => {
 });
 
 // Executed after the electron started.
-app.on('ready', () => {
+app.on('ready', async () => {
     // Main process
     mainWindow = new BrowserWindow({
         width: 800,
@@ -31,5 +31,10 @@ app.on('ready', () => {
     globalShortcut.register('CommandOrControl+P', () => {
         // request to toggle editor mode.
         mainWindow.webContents.send('toggleMdEditor', {});
+    })
+
+    globalShortcut.register('CommandOrControl+T', () => {
+        // request to change editor mode.
+        mainWindow.webContents.send('changeMdEditor', {});
     })
 });

@@ -1,4 +1,6 @@
 /**
+ * Client Side Modules.
+ *
  * Control the markdown editor.
  *
  * === Functions ===
@@ -9,6 +11,12 @@ const { ipcRenderer } = require('electron');
 const mdEditor = require('./app/modules/mdEditor');
 const editor = new mdEditor(document);
 
+editor.init();
+
 ipcRenderer.on('toggleMdEditor', (e, data) => {
     editor.toggle();
+});
+
+ipcRenderer.on('changeMdEditor', (e, data) => {
+    editor.change();
 });
