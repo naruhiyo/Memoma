@@ -10,8 +10,9 @@ const projectManager = class {
     }
 
     /**
-     * プロジェクトを作成する
-     * @param 
+     * Create new project. 
+     * @param {string} projectName name of project which the user input #projectName_txtbox
+     * @param {string} projectPath path to project 
      */
     createProject(projectName, projectPath) {
         this.projectName = projectName;
@@ -20,6 +21,7 @@ const projectManager = class {
 
         let _mdDir = this.mdDir;
 
+        // create files if the markdown directory does not exist
         fs.access(_mdDir, (err) => {
             if (err) {
                 if (err.code === 'ENOENT') {
@@ -29,7 +31,7 @@ const projectManager = class {
                         }
                     });
 
-                    // .mmmファイルの作成
+                    // create .mmm file (project file)
                     let contentProjct = `{"projectName": "${projectName}",\n
                     "filePath": ".memoma/${projectName}"\n
                     }`;
@@ -40,7 +42,7 @@ const projectManager = class {
                         }
                     });
 
-                    // .mdファイルの作成
+                    // create markdown files
                     let fnameTails = ['memo', 'note', 'todo'];
                     fnameTails.forEach(function (fnameTailsElment) {
                         fs.writeFile(_mdDir + '/' + projectName + '_' + fnameTailsElment + '.md', '', (errCreateFile) => {
@@ -65,6 +67,7 @@ const projectManager = class {
      *     project name
      */
     saveProject(data) {
+        // markdown contents
         let mdObject = [
             {
                 type: 'memo',
@@ -82,6 +85,8 @@ const projectManager = class {
 
         let _mdDir = __dirname + '/../../.memoma/' + data.projectName;
         let _projectName = data.projectName;
+
+        // overwrite markdown files
         mdObject.forEach(function (mdObj) {
             fs.writeFile(_mdDir + '/' + _projectName + '_' + mdObj.type + '.md', mdObj.content, function (errCreateFile) {
                 if (errCreateFile) {
@@ -92,6 +97,9 @@ const projectManager = class {
 
     }
 
+    /**
+     * Open project by calling fileOpen method in fileIO.js.
+     */
     openProject() {
         fileIO.fileOpen();
     }
