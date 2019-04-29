@@ -2,7 +2,7 @@
 
 - 下記画像を参照
 
-![Requirement](./memoma.PNG)
+[Requirement](./memoma.PNG)
 
 ## 機能要件
 
@@ -13,10 +13,23 @@
     - 生成されるファイル名の規則は以下の通り
 
 ```
-{{ :Project-Name }}/
-    ├ {{ :Project-Name }}_memo.md
-    ├ {{ :Project-Name }}_note.md
-    └ {{ :Project-Name }}_todo.md
+# 実際のテキストファイル保管場所
+.memoma/
+    └ {{ :Project-Name }}/
+        ├ {{ :Project-Name }}_memo.md
+        ├ {{ :Project-Name }}_note.md
+        └ {{ :Project-Name }}_todo.md
+
+# テキストファイルを参照するための `.mmm` ファイルは自由に設定可能
+```
+
+- `.mmm`の構成
+
+```
+{
+    "projectName": "",
+    "filePath": ""
+}
 ```
 
 - 操作
