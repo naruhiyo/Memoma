@@ -13,11 +13,11 @@ const marked = require('marked');
 const MdEditor = function (document) {
 
     // dom elements
-    this.markdowns = null;
-    this.previews = null;
+    this.boxes = null;
 
     this.activeMarkdown = null;
     this.activePreview = null;
+    this.activeHeader = null;
 
     this.maxItemSize = 0;
     this.currentNodeIndex = 0;
@@ -29,14 +29,14 @@ const MdEditor = function (document) {
 
     this.init = () => {
         // get All fields
-        this.markdowns = this.document.querySelectorAll('.markdown-text');
-        this.previews = this.document.querySelectorAll('.markdown-preview');
+        this.boxes = this.document.querySelectorAll('.box');
 
         // get Active field
         this.activeMarkdown = this.document.querySelector('.markdown-text.active');
         this.activePreview = this.document.querySelector('.markdown-preview.active');
+        this.activeHeader = this.document.querySelector('.box-header.active');
 
-        this.maxItemSize = this.markdowns.length;
+        this.maxItemSize = this.boxes.length;
     };
 
     //
@@ -44,6 +44,7 @@ const MdEditor = function (document) {
         const text = this.activeMarkdown.value;
 
         // translated!
+        console.warn(marked(text, this.markedOptions));
         this.activePreview.innerHTML = marked(text, this.markedOptions);
     };
 
@@ -63,13 +64,16 @@ const MdEditor = function (document) {
         // remove active class from current target dom.
         this.activeMarkdown.classList.remove('active');
         this.activePreview.classList.remove('active');
+        this.activeHeader.classList.remove('active');
 
         // add active class to new target dom.
-        this.activeMarkdown = this.markdowns[this.currentNodeIndex];
-        this.activePreview = this.previews[this.currentNodeIndex];
+        this.activeMarkdown = this.boxes[this.currentNodeIndex].querySelector('.markdown-text');
+        this.activePreview = this.boxes[this.currentNodeIndex].querySelector('.markdown-preview');
+        this.activeHeader = this.boxes[this.currentNodeIndex].querySelector('.box-header');
 
         this.activeMarkdown.classList.add('active');
         this.activePreview.classList.add('active');
+        this.activeHeader.classList.add('active');
     };
 };
 

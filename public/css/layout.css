@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+}
+
+html,
+body,
+main,
+div {
+    height: 100%;
+}
+
+header,
+footer {
+    width: 100%;
+    background: #001e43;
+    color: white;
+}
+
+header {
+    padding: 0 16px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 2em;
+}
+
+footer {
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+    font-size: 1.2em;
+}
+
+main.container {
+    background: #404040;
+}
+
+/* Display */
+.d-hidden {
+    display: none;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
