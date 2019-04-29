@@ -1,3 +1,8 @@
+/**
+ * Backend Modules
+ *
+ *
+ */
 const fs = require('fs');
 const { BrowserWindow, dialog } = require('electron').remote;
 
@@ -66,9 +71,8 @@ const FileIO = function () {
                 return;
             }
 
-            // parse read file.
-            const text = data.toString();
-            dom.value = text;
+            // insert text.
+            dom.value = data.toString();
         })
     }
 };
