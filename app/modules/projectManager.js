@@ -62,25 +62,25 @@ const projectManager = class {
      * レンダラープロセス内のmdテキストデータを取得して
      * 所望の.mdに上書き保存する．
      */
-    saveProject() {
+    saveProject(data) {
         // レンダラープロセスからmdテキストデータを取得する
         let mdObject = [
             {
                 type: 'memo',
-                content: 'hoge' //取得したデータここに書く
+                content: data.memo
             },
             {
                 type: 'note',
-                content: 'fuga'//取得したデータここに書く
+                content: data.note
             },
             {
                 type: 'todo',
-                content: 'piyo'//取得したデータここに書く
+                content: data.todo
             }
         ];
 
-        let _mdDir = this.mdDir;
-        let _projectName = this.projectName;
+        let _mdDir = __dirname + '/../../.memoma/' + data.projectName;
+        let _projectName = data.projectName;
         mdObject.forEach(function (mdObj) {
             fs.writeFile(_mdDir + '/' + _projectName + '_' + mdObj.type + '.md', mdObj.content, function (errCreateFile) {
                 if (errCreateFile) {
