@@ -1,4 +1,3 @@
-
 /* icons */
 button {
     height: 100%;
@@ -56,10 +55,15 @@ textarea.markdown-text {
     border: none;
 }
 
+textarea.markdown-text[readonly] {
+    background: #bfbfbf;
+}
+
 .markdown-preview {
     font-size: 1.4em;
     padding: 10px;
     color: white !important;
+    background: #202020;
 }
 
 /* active style */
@@ -104,4 +108,10 @@ textarea.markdown-text {
 .cp-tooltip-text:hover::after {
     top: 26px;/*HOVER位置*/
     opacity: 1;
+}
+
+/* footer */
+footer a {
+    color: white;
+    text-decoration: none;
 }
