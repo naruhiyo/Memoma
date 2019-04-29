@@ -1,61 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="utf-8">
     <title>Memoma</title>
-    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link type="text/css" rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<main id="main" class="container">
-    <h1>Title</h1>
-    <div id="projectSaver" hidden>
-        <div>
-            <label for="projectName_txtbox" style="font-weight: bold">Project Name: </label>
-            <input type="text" name="name" size="30" maxlength="20" id="projectName_txtbox" />
+    <main id="main" class="container">
+        <h1>Title</h1>
+        <div id="projectSaver" hidden>
+            <div>
+                <label for="projectName_txtbox" style="font-weight: bold">Project Name: </label>
+                <input type="text" name="name" size="30" maxlength="20" id="projectName_txtbox" />
+            </div>
+            <button id="save_btn">save</button>
         </div>
-        <button id="save_btn">save</button>
-    </div>
-    <div id="md-fields" class="d-flex">
+        <div id="md-fields" class="d-flex">
 
-        <div class="box">
-            <h3>Memo</h3>
-<textarea id="memo-md-field" class="markdown-text active" tabindex="-1" data-index="1"># hoge
-- a
-- b
-- c
-</textarea>
-            <div id="memo-md-preview" class="markdown-preview active d-hidden"></div>
+            <div class="box">
+                <h3>Memo</h3>
+                <textarea id="memo-md-field" class="markdown-text active" tabindex="-1" data-index="1"
+                    disabled></textarea>
+                <div id="memo-md-preview" class="markdown-preview active d-hidden"></div>
+            </div>
+
+            <div class="box">
+                <h3>Note</h3>
+                <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2" disabled></textarea>
+                <div id="note-md-preview" class="markdown-preview d-hidden"></div>
+            </div>
+
+            <div class="box">
+                <h3>Todo</h3>
+                <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3" disabled></textarea>
+                <div id="todo-md-preview" class="markdown-preview d-hidden"></div>
+            </div>
         </div>
 
-        <div class="box">
-            <h3>Note</h3>
-        <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2"># hoge
-- d
-- e
-- f
-</textarea>
-            <div id="note-md-preview" class="markdown-preview d-hidden"></div>
-        </div>
+    </main>
 
-        <div class="box">
-            <h3>Todo</h3>
-        <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3"># hoge
-- g
-- h
-- i
-</textarea>
-            <div id="todo-md-preview" class="markdown-preview d-hidden"></div>
-        </div>
-    </div>
-
-</main>
-
-<footer>
-    &copy; Narukey and Hiyoko3
-</footer>
-<script src="public/modules/renderer.js"></script>
-<script src="app/modules/MdEditor.js"></script>
-<script src='./public/modules/projectNameCreator.js'></script>
+    <footer>
+        &copy; Narukey and Hiyoko3
+    </footer>
+    <script src="public/modules/renderer.js"></script>
+    <script src="app/modules/MdEditor.js"></script>
+    <script src='./public/modules/projectNameCreator.js'></script>
 </body>
+
 </html>

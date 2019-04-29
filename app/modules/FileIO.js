@@ -36,6 +36,7 @@ const FileIO = function () {
             }
 
             // parse read file.
+            console.log(data.toString());
             const json = JSON.parse(data.toString());
             this.findFields(json);
         })
@@ -45,7 +46,7 @@ const FileIO = function () {
         const projectPath = json.filePath;
         const _this = this;
 
-        fs.readdir(projectPath, function(err, files){
+        fs.readdir(projectPath, function (err, files) {
             if (err) throw err;
 
             files.forEach(file => {
