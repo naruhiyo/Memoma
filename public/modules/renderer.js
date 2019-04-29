@@ -16,7 +16,7 @@ const editor = new mdEditor(document);
 const fileIO = new FileIO();
 
 document.addEventListener('DOMContentLoaded', async () => {
-    await fileIO.fileOpen();
+    //await fileIO.fileOpen();
     await editor.init();
 
     ipcRenderer.on('toggleMdEditor', (e, data) => {
