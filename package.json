@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "electron": "^4.1.4",
-    "electron-localshortcut": "^3.1.0",
     "marked": "^0.6.2"
   },
   "devDependencies": {}

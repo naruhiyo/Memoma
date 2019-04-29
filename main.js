@@ -39,17 +39,6 @@ app.on('ready', async () => {
         mainWindow = null;
     });
 
-    // Shortcut command event
-    localShortcut.register(mainWindow, 'CommandOrControl+P', () => {
-        // request to toggle editor mode.
-        mainWindow.webContents.send('toggleMdEditor', {});
-    });
-
-    localShortcut.register(mainWindow, 'CommandOrControl+Tab', () => {
-        // request to change editor mode.
-        mainWindow.webContents.send('changeMdEditor', {});
-    });
-
     // ElectronのMenuの設定
     const templateMenu = [
         {
@@ -84,36 +73,24 @@ app.on('ready', async () => {
             ]
         },
         {
+            label: 'Move',
+            submenu: [
+                {
+                    label: 'Move to Next Tab',
+                    accelerator: 'CmdOrCtrl+Tab',
+                    click: () => mainWindow.webContents.send('changeMdEditor', {})
+                }
+            ]
+        },
+        {
             label: 'View',
             submenu: [
                 {
-                    label: 'Reload',
-                    accelerator: 'CmdOrCtrl+R',
-                    click: (item, focusedWindow) => {
-                        if (focusedWindow) focusedWindow.reload()
-                    },
-                },
-                {
-                    type: 'separator',
-                },
-                {
-                    role: 'resetzoom',
-                },
-                {
-                    role: 'zoomin',
-                },
-                {
-                    role: 'zoomout',
-                },
-                {
-                    type: 'separator',
-                },
-                {
-                    role: 'togglefullscreen',
-                },
-                {
-                    role: 'toggledevtools',
-                },
+                    label: 'Toggle Preview/Edit',
+                    accelerator: 'CmdOrCtrl+P',
+                    click: () => mainWindow.webContents.send('toggleMdEditor', {})
+                }
+
             ]
         }
     ];
