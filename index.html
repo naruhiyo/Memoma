@@ -7,7 +7,8 @@
 
     <link type="text/css" rel="stylesheet" href="style.css"/>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -53,7 +54,8 @@
 
                         <div class="form-group">
                             <label for="projectName_txtbox">Project Name: </label>
-                            <input type="text" name="name" size="30" maxlength="20" id="projectName_txtbox" placeholder="Project Name" />
+                            <input type="text" name="name" size="30" maxlength="20" id="projectName_txtbox"
+                                   placeholder="Project Name"/>
                         </div>
                         <div class="form-group">
                             <button id="save_btn">save</button>
@@ -69,32 +71,36 @@
     <div id="md-fields" class="d-flex">
         <div class="box">
             <h3 class="box-header active">Memo</h3>
-            <textarea id="memo-md-field" class="markdown-text active" tabindex="-1" data-index="1" placeholder="Here is memo"></textarea>
+            <textarea id="memo-md-field" class="markdown-text active" tabindex="-1" data-index="1"
+                      placeholder="Here is memo"></textarea>
             <div id="memo-md-preview" class="markdown-preview active d-none markdown-body"></div>
         </div>
 
         <div class="box">
             <h3 class="box-header">Note</h3>
-            <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2" placeholder="Here is own note" readonly></textarea>
+            <textarea id="note-md-field" class="markdown-text" tabindex="-1" data-index="2"
+                      placeholder="Here is own note" readonly></textarea>
             <div id="note-md-preview" class="markdown-preview d-none markdown-body"></div>
         </div>
 
         <div class="box">
             <h3 class="box-header">Todo</h3>
-            <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3" placeholder="Here is todo list" readonly></textarea>
+            <textarea id="todo-md-field" class="markdown-text" tabindex="-1" data-index="3"
+                      placeholder="Here is todo list" readonly></textarea>
             <div id="todo-md-preview" class="markdown-preview d-none markdown-body"></div>
         </div>
     </div>
 </main>
 
 <footer>
-    &copy; <a href="https://github.com/narugit" target="_blank" rel="noopener noreferrer">@narugit</a> and <a href="https://github.com/hiyoko3" target="_blank" rel="noopener noreferrer">@hiyoko3</a>
+    &copy; <a href="https://github.com/narugit" target="_blank" rel="noopener noreferrer">@narugit</a> and <a
+        href="https://github.com/hiyoko3" target="_blank" rel="noopener noreferrer">@hiyoko3</a>
 </footer>
 
 <script src="public/modules/renderer.js"></script>
 <script src="app/modules/MdEditor.js"></script>
-            <script src="app/modules/MdSaver.js"></script>
-<script src='./public/modules/projectNameCreator.js'></script>
+<script src="app/modules/MdSaver.js"></script>
+<script src='public/modules/projectNameCreator.js'></script>
 </body>
 
 </html>
