@@ -23,7 +23,10 @@ app.on('ready', async () => {
     // Main process
     mainWindow = new BrowserWindow({
         width: 800,
-        height: 600
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
 
     mainWindow.loadURL('file://' + __dirname + '/index.html');
@@ -69,6 +72,10 @@ app.on('ready', async () => {
                 {
                     role: 'redo',
                 },
+                // For debugger
+                // {
+                //     role: 'toggledevtools',
+                // },
             ]
         },
         {
