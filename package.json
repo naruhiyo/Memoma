@@ -19,6 +19,7 @@
   "author": "Narukey, Tatwo.yap",
   "license": "ISC",
   "dependencies": {
+    "@types/electron": "^1.6.10",
     "marked": "^0.6.2"
   },
   "devDependencies": {
