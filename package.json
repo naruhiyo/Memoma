@@ -4,14 +4,19 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "electron ."
+    "dev": "electron .",
+    "build:mac": "node build-mac.js",
+    "build:win": "node build-win.js"
   },
   "keywords": [],
   "author": "Narukey, Tatwo.yap",
   "license": "ISC",
   "dependencies": {
-    "electron": "^4.1.4",
     "marked": "^0.6.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "electron": "^5.0.2",
+    "electron-builder": "^20.40.2",
+    "fs": "0.0.1-security"
+  }
 }

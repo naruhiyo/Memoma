@@ -1,5 +1,0 @@
-[alias]
-    st = status
-    glog = log --all --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(yellow)%cn %Cred%d %Creset%s'
-    difff = diff --word-diff
-
