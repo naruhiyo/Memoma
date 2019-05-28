@@ -10,10 +10,10 @@
 const { ipcRenderer } = require('electron');
 
 const mdEditor = require('./app/modules/MdEditor');
-const FileIO = require('./app/modules/FileIO');
+const fileIO = require('./app/modules/FileIO');
 
 const editor = new mdEditor(document);
-const fileIO = new FileIO();
+const fIO = new fileIO();
 
 document.addEventListener('DOMContentLoaded', async () => {
     await editor.init();
@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const saveBtn = document.querySelector('#save-btn i');
     const toggleBtn = document.querySelector('#toggle-btn i');
     const changeBtn = document.querySelector('#change-btn i');
-
 
     ipcRenderer.on('toggleMdEditor', (e, data) => {
         editor.toggle();
@@ -43,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     ipcRenderer.on('onOpenProject', (e, data) => {
-        fileIO.fileOpen();
+        fIO.fileOpen();
     });
 
     saveBtn.addEventListener('click', () => {
@@ -51,10 +50,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     toggleBtn.addEventListener('click', () => {
-        editor.toggle()
+        editor.toggle();
     });
 
     changeBtn.addEventListener('click', () => {
-        editor.move('next')
+        editor.move('next');
     });
 });
