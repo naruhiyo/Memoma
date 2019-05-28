@@ -1,84 +1,63 @@
 'use strict';
 
-let remote = require('electron').remote;
-const { dialog } = require('electron');
-let fs = require('fs');
+const remote = require('electron').remote;
+const {dialog} = require('electron');
+const fs = require('fs');
 
 const projectManager = class {
-    constructor(dirName) {
-        this.dirName = dirName;
-    }
-
-    async my_mkdir(_mdDir) {
-        fs.mkdir(_mdDir, { recursive: true }, (err) => {
-            console.warn('# make directory');
-
-            if (err) {
-                console.warn(err.message);
-            }
-        });
-    }
-
     /**
-     * Create new project. 
+     * Create new project.
      * @param {string} projectName name of project which the user input #projectName_txtbox
-     * @param {string} projectPath path to project 
+     * @param {string} projectPath path to project
      */
     createProject(projectName, projectPath) {
         this.projectName = projectName;
         this.mdDir = `${projectPath}/.memoma/${projectName}`;
-        let projectFile = `${projectPath}/${projectName}.mmm`;
+        const projectFile = `${projectPath}/${projectName}.mmm`;
 
-        let hogeMd = `${this.mdDir}/${projectName}_memo.md`
+        const _mdDir = this.mdDir;
 
-        let _mdDir = this.mdDir;
+        fs.access(_mdDir, err => {
+            if (!err) return;
+            // create files if the markdown directory does not exist
+            if (err.code !== 'ENOENT') return;
 
-        fs.access(_mdDir, (err) => {
-            if (err) {
-                // create files if the markdown directory does not exist
-                if (err.code === 'ENOENT') {
-                    new Promise(resolve => {
-                        fs.mkdir(_mdDir, { recursive: true }, (err) => {
-                            if (err) {
-                                console.warn(err.message);
-                            }
-                            resolve();
-                        });
-                    }).then(() => {
-                        // create .mmm file (project file)
-                        let contentProjct = `{"projectName": "${projectName}",\n
+            new Promise(resolve => {
+                fs.mkdir(_mdDir, {recursive: true}, (err) => {
+                    if (err) {
+                        dialog.showErrorBox(err.message);
+                    }
+                    resolve();
+                });
+            }).then(() => {
+                // create .mmm file (project file)
+                let contentProjct = `{"projectName": "${projectName}",\n
                                               "filePath": "${projectPath}/.memoma/${projectName}"\n
                                             }`;
 
-                        fs.writeFile(projectFile, contentProjct, (errCreateProject) => {
-                            if (errCreateProject) {
-                                dialog.showErrorBox("An error ocurred creating the file", errCreateProject.message);
-                            }
-                        });
+                fs.writeFile(projectFile, contentProjct, (errCreateProject) => {
+                    if (errCreateProject) {
+                        dialog.showErrorBox("An error ocurred creating the file", errCreateProject.message);
+                    }
+                });
 
-                        // create markdown files
-                        let fnameTails = ['memo', 'note', 'todo'];
-                        fnameTails.forEach(function (fnameTailsElment) {
-                            fs.writeFile(`${_mdDir}/${projectName}_${fnameTailsElment}.md`, '', (errCreateFile) => {
-                                if (errCreateFile) {
-                                    dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
-                                }
-                            });
-                        });
+                // create markdown files
+                let fnameTails = ['memo', 'note', 'todo'];
+                fnameTails.forEach(function (fnameTailsElment) {
+                    fs.writeFile(`${_mdDir}/${projectName}_${fnameTailsElment}.md`, '', (errCreateFile) => {
+                        if (errCreateFile) {
+                            dialog.showErrorBox("An error ocurred creating the file", errCreateFile.message);
+                        }
                     });
-
-                    return;
-                } else {
-                    return;
-                }
-            }
+                });
+            });
         });
     }
 
     /**
-     * Overwrite .md files. 
+     * Overwrite .md files.
      *     Call from onSaveProject function from main.js.
-     * @param {Object} data contents of markdown contents editing and 
+     * @param {Object} data contents of markdown contents editing and
      *     project name
      */
     saveProject(data) {
