@@ -29,8 +29,8 @@ ipc.on(
         ) as HTMLInputElement;
         const todoValue: string = todoMdField.value;
 
-        const projectName: HTMLInputElement = document.getElementById(
-            'project-name'
+        const projectName: HTMLInputElement = document.querySelector(
+            '#project-name'
         ) as HTMLInputElement;
         const name: string = projectName.dataset.projectName;
 
