@@ -6,7 +6,14 @@
   "scripts": {
     "dev": "electron .",
     "build:mac": "node build-mac.js",
-    "build:win": "node build-win.js"
+    "build:win": "node build-win.js",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
   },
   "keywords": [],
   "author": "Narukey, Tatwo.yap",
@@ -17,6 +24,8 @@
   "devDependencies": {
     "electron": "^5.0.2",
     "electron-builder": "^20.40.2",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "gts": "^1.0.0",
+    "typescript": "~3.4.0"
   }
 }
