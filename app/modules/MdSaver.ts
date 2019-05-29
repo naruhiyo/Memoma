@@ -7,8 +7,6 @@
  *
  * - Save markdown files.
  */
-// libraries
-
 const ipc = require('electron').ipcRenderer;
 
 ipc.on(

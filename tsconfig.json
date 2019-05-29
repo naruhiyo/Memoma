@@ -7,5 +7,10 @@
   "include": [
     "src/**/*.ts",
     "test/**/*.ts"
-  ]
+  ],
+  "lib": [
+    "es6",
+    "dom"
+  ],
+  "allowJs": true
 }
