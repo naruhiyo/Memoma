@@ -7,6 +7,7 @@
  *
  * - Save markdown files.
  */
+import Memoma from './models/Memoma';
 const ipc = require('electron').ipcRenderer;
 
 ipc.on(
@@ -15,29 +16,28 @@ ipc.on(
         const memoMdField: HTMLInputElement = document.querySelector(
             '#memo-md-field'
         ) as HTMLInputElement;
-        const memoValue: string = memoMdField.value;
 
         const noteMdField: HTMLInputElement = document.querySelector(
             '#note-md-field'
         ) as HTMLInputElement;
-        const noteValue: string = noteMdField.value;
 
         const todoMdField: HTMLInputElement = document.querySelector(
             '#todo-md-field'
         ) as HTMLInputElement;
-        const todoValue: string = todoMdField.value;
 
-        const projectName: HTMLInputElement = document.querySelector(
+        const projectName: HTMLElement = document.querySelector(
             '#project-name'
-        ) as HTMLInputElement;
-        const name: string = projectName.dataset.projectName;
+        ) as HTMLElement;
 
-        const data: object = {
-            memo: memoValue,
-            note: noteValue,
-            todo: todoValue,
+        const name: string = projectName.dataset.projectName!;
+
+        const memomaData: Memoma = {
+            memo: memoMdField.value,
+            note: noteMdField.value,
+            todo: todoMdField.value,
             projectName: name,
         };
-        ipc.send('onSendProjectData', data);
+
+        ipc.send('onSendProjectData', memomaData);
     }
 );

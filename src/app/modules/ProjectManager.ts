@@ -5,8 +5,8 @@
  */
 import {remote} from 'electron';
 import * as fs from 'fs'
-import ProjectField from './models/ProjectField';
 import Memoma from './models/Memoma';
+import ProjectField from "./models/ProjectField";
 
 class ProjectManager {
     /**

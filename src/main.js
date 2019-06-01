@@ -73,9 +73,9 @@ app.on('ready', async () => {
                     role: 'redo',
                 },
                 // For debugger
-                // {
-                //     role: 'toggledevtools',
-                // },
+                {
+                    role: 'toggledevtools',
+                },
             ]
         },
         {
@@ -172,5 +172,8 @@ app.on('ready', async () => {
 
     mainWindow.on('closed', function () {
         mainWindow = null;
+        if(process.platform !== 'darwin') {
+            app.quit();
+        }
     });
 });
