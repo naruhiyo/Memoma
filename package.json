@@ -2,7 +2,7 @@
   "name": "Memoma",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "dev": "electron .",
     "build:mac": "node build-mac.js",

@@ -3,13 +3,21 @@
  *
  *
  */
-const fs = require('fs');
-const { BrowserWindow, dialog } = require('electron').remote;
+import * as fs from 'fs';
+import {remote} from 'electron';
+
+interface ProjectField {
+    projectName: string
+    filePath: string
+}
 
 class FileIO {
     fileOpen(): void {
-        const win = BrowserWindow.getFocusedWindow();
-        dialog.showOpenDialog(
+        const win = remote.BrowserWindow.getFocusedWindow();
+
+        if (win == null) return;
+
+        remote.dialog.showOpenDialog(
             win,
             {
                 properties: ['openFile'],
@@ -21,7 +29,7 @@ class FileIO {
                 ],
             },
             filePaths => {
-                if (filePaths) {
+                if (filePaths != null) {
                     this.readFile(filePaths[0]); //複数選択の可能性もあるので配列となる。
                 }
             }
@@ -30,19 +38,19 @@ class FileIO {
 
     readFile(filePath: string): void {
         fs.readFile(filePath, (error, data) => {
-            if (error !== null) {
+            if (error != null) {
                 alert('file open error.');
                 return;
             }
 
             // parse read file.
-            const json = JSON.parse(data.toString());
-            this.findFields(json);
+            const projectField: ProjectField = JSON.parse(data.toString());
+            this.findFields(projectField);
         });
     }
 
-    findFields(json): void {
-        const projectPath: string = json.filePath;
+    findFields(projectField: ProjectField): void {
+        const projectPath: string = projectField.filePath;
         const _this = this;
 
         fs.readdir(projectPath, (err, files) => {
@@ -52,29 +60,29 @@ class FileIO {
                 if (file.includes('memo')) {
                     _this.embedToField(
                         `${projectPath}/${file}`,
-                        document.querySelector('#memo-md-field')
+                        document.querySelector('#memo-md-field') as HTMLInputElement
                     );
                 }
 
                 if (file.includes('note')) {
                     _this.embedToField(
                         `${projectPath}/${file}`,
-                        document.querySelector('#note-md-field')
+                        document.querySelector('#note-md-field') as HTMLInputElement
                     );
                 }
 
                 if (file.includes('todo')) {
                     _this.embedToField(
                         `${projectPath}/${file}`,
-                        document.querySelector('#todo-md-field')
+                        document.querySelector('#todo-md-field') as HTMLInputElement
                     );
                 }
             });
         });
 
-        _this.addProjectNameToField(json.projectName, document.getElementById(
-            'project-name'
-        ) as HTMLInputElement);
+        _this.addProjectNameToField(projectField.projectName,
+            document.querySelector('#project-name') as HTMLInputElement
+        );
     }
 
     embedToField(fileName: string, dom: HTMLInputElement): void {

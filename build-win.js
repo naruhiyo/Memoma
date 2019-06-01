@@ -15,7 +15,7 @@ builder.build({
                     'x64'
                 ]
             },
-            'icon': 'public/icon.png'
+            'icon': 'src/public/icon.png'
         }
     },
 })

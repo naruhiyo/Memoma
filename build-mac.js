@@ -8,11 +8,11 @@ builder.build({
     platform: 'mac',
     config: {
         'appId': `${packagejson.name}`,
-        "mac": {
-            "icon": "public/icon.png",
-            "target": [
-                "dmg"
+        'mac': {
+            'icon': 'src/public/icon.png',
+            'target': [
+                'dmg'
             ]
         }
     },
-})
+});
