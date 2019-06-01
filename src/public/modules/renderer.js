@@ -9,8 +9,8 @@
  */
 const { ipcRenderer } = require('electron');
 
-const mdEditor = require('./app/modules/MdEditor');
-const FileIO = require('./app/modules/FileIO');
+const mdEditor = require('./src/app/modules/MdEditor');
+const FileIO = require('./src/app/modules/FileIO');
 
 const editor = new mdEditor(document);
 const fileIO = new FileIO();

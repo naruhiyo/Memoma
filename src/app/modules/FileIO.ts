@@ -5,11 +5,7 @@
  */
 import * as fs from 'fs';
 import {remote} from 'electron';
-
-interface ProjectField {
-    projectName: string
-    filePath: string
-}
+import ProjectField from './models/ProjectField';
 
 class FileIO {
     fileOpen(): void {
@@ -87,7 +83,7 @@ class FileIO {
 
     embedToField(fileName: string, dom: HTMLInputElement): void {
         fs.readFile(fileName, (error, data) => {
-            if (error !== null) {
+            if (error != null) {
                 alert('file open error.');
                 return;
             }

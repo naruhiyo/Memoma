@@ -2,7 +2,7 @@
 
 // global module
 const { app, BrowserWindow, Menu, dialog, shell } = require('electron');
-const ProjectManager = require('./app/modules/projectManager.js');
+const ProjectManager = require('./app/modules/ProjectManager.js');
 
 
 const projectManager = new ProjectManager(__dirname);

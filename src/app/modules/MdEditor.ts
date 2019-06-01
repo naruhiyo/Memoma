@@ -19,7 +19,7 @@ class MdEditor {
 
     // position index
     private readonly maxItemSize: number = 0;
-    private currentNodeIndex: number = 0;
+    private currentNodeIndex = 0;
 
     // marked options
     private markedOptions: object = {};
@@ -34,12 +34,8 @@ class MdEditor {
         this.boxes = document.querySelectorAll('.box');
 
         // get Active field
-        this.activeMarkdown = document.querySelector(
-            '.markdown-text.active'
-        );
-        this.activePreview = document.querySelector(
-            '.markdown-preview.active'
-        );
+        this.activeMarkdown = document.querySelector('.markdown-text.active');
+        this.activePreview = document.querySelector('.markdown-preview.active');
         this.activeHeader = document.querySelector('.box-header.active');
 
         this.maxItemSize = this.boxes.length;
@@ -58,11 +54,13 @@ class MdEditor {
         this.activePreview.classList.toggle('d-none');
     }
 
-    move(target: string = 'next'): void {
-        if (this.activeMarkdown == null ||
+    move(target = 'next'): void {
+        if (
+            this.activeMarkdown == null ||
             this.activePreview == null ||
             this.activeHeader == null ||
-            this.boxes == null) {
+            this.boxes == null
+        ) {
             return;
         }
 
@@ -94,9 +92,11 @@ class MdEditor {
             '.box-header'
         );
 
-        if (this.activeMarkdown == null ||
+        if (
+            this.activeMarkdown == null ||
             this.activePreview == null ||
-            this.activeHeader == null) {
+            this.activeHeader == null
+        ) {
             return;
         }
 
