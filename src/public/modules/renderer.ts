@@ -16,8 +16,6 @@ const editor = new mdEditor(document);
 const fileIO = new FileIO();
 
 document.addEventListener('DOMContentLoaded', async () => {
-    await editor.init();
-
     const modalWindow = document.querySelector('#project-saver.modal');
 
     const modalCloseBtn = document.querySelector('#modal-close');

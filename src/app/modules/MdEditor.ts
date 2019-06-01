@@ -11,58 +11,62 @@
 const marked = require('marked');
 
 class MdEditor {
-    private document: HTMLElement = null;
-
-    private boxes: HTMLElement = null;
-
     // dom elements
-    private activeMarkdown: HTMLElement = null;
-    private activePreview: HTMLElement = null;
-    private activeHeader: HTMLElement = null;
+    private readonly boxes: NodeListOf<HTMLElement> | null = null;
+    private activeMarkdown: HTMLInputElement | null = null;
+    private activePreview: HTMLElement | null = null;
+    private activeHeader: HTMLElement | null = null;
 
-    private maxItemSize = 0;
-    private currentNodeIndex = 0;
+    // position index
+    private readonly maxItemSize: number = 0;
+    private currentNodeIndex: number = 0;
 
     // marked options
     private markedOptions: object = {};
 
     constructor(document: HTMLElement) {
-        this.document = document;
-    }
+        if (document == null) {
+            alert('The HTML Element does not find.');
+            return;
+        }
 
-    init(): void {
         // get All fields
-        this.boxes = this.document.querySelectorAll('.box');
+        this.boxes = document.querySelectorAll('.box');
 
         // get Active field
-        this.activeMarkdown = this.document.querySelector(
+        this.activeMarkdown = document.querySelector(
             '.markdown-text.active'
         );
-        this.activePreview = this.document.querySelector(
+        this.activePreview = document.querySelector(
             '.markdown-preview.active'
         );
-        this.activeHeader = this.document.querySelector('.box-header.active');
+        this.activeHeader = document.querySelector('.box-header.active');
 
         this.maxItemSize = this.boxes.length;
     }
 
-    convert(): void {
-        const text = this.activeMarkdown.value;
-
-        // translated!
-        console.warn(marked(text, this.markedOptions));
-        this.activePreview.innerHTML = marked(text, this.markedOptions);
-    }
-
+    /**
+     * Public Fields
+     */
     toggle(): void {
-        this.convert();
+        if (this.activeMarkdown == null || this.activePreview == null) {
+            return;
+        }
 
+        this.convert();
         this.activeMarkdown.classList.toggle('d-none');
         this.activePreview.classList.toggle('d-none');
     }
 
-    move(target: HTMLInputElement): void {
-        const index = this.activeMarkdown.dataset.index;
+    move(target: string = 'next'): void {
+        if (this.activeMarkdown == null ||
+            this.activePreview == null ||
+            this.activeHeader == null ||
+            this.boxes == null) {
+            return;
+        }
+
+        const index: number = Number(this.activeMarkdown.dataset.index);
 
         // update current field index
         if (target === 'next') {
@@ -77,7 +81,7 @@ class MdEditor {
         this.activePreview.classList.remove('active');
         this.activeHeader.classList.remove('active');
 
-        this.activeMarkdown.setAttribute('readonly', true);
+        this.activeMarkdown.setAttribute('readonly', 'true');
 
         // add active class to new target dom.
         this.activeMarkdown = this.boxes[this.currentNodeIndex].querySelector(
@@ -90,6 +94,13 @@ class MdEditor {
             '.box-header'
         );
 
+        if (this.activeMarkdown == null ||
+            this.activePreview == null ||
+            this.activeHeader == null) {
+            return;
+        }
+
+
         this.activeMarkdown.classList.add('active');
         this.activePreview.classList.add('active');
         this.activeHeader.classList.add('active');
@@ -98,6 +109,23 @@ class MdEditor {
         this.activeMarkdown.focus();
 
         this.activeMarkdown.removeAttribute('readonly');
+    }
+
+    /**
+     * Private Fields
+     */
+    private convert(): void {
+        if (this.activeMarkdown == null) {
+            alert('The markdown form does not exist.');
+            return;
+        }
+
+        const text: string = this.activeMarkdown.value;
+
+        // translated!
+        if (this.activePreview != null) {
+            this.activePreview.innerHTML = marked(text, this.markedOptions);
+        }
     }
 }
 
