@@ -10,59 +10,66 @@
 // libraries
 const marked = require('marked');
 
-const MdEditor = function (document) {
+class MdEditor {
+    private document: HTMLElement = null;
+
+    private boxes: HTMLElement = null;
 
     // dom elements
-    this.boxes = null;
+    private activeMarkdown: HTMLElement = null;
+    private activePreview: HTMLElement = null;
+    private activeHeader: HTMLElement = null;
 
-    this.activeMarkdown = null;
-    this.activePreview = null;
-    this.activeHeader = null;
-
-    this.maxItemSize = 0;
-    this.currentNodeIndex = 0;
-
-    this.document = document;
+    private maxItemSize = 0;
+    private currentNodeIndex = 0;
 
     // marked options
-    this.markedOptions = {};
+    private markedOptions: object = {};
 
-    this.init = () => {
+    constructor(document: HTMLElement) {
+        this.document = document;
+    }
+
+    init(): void {
         // get All fields
         this.boxes = this.document.querySelectorAll('.box');
 
         // get Active field
-        this.activeMarkdown = this.document.querySelector('.markdown-text.active');
-        this.activePreview = this.document.querySelector('.markdown-preview.active');
+        this.activeMarkdown = this.document.querySelector(
+            '.markdown-text.active'
+        );
+        this.activePreview = this.document.querySelector(
+            '.markdown-preview.active'
+        );
         this.activeHeader = this.document.querySelector('.box-header.active');
 
         this.maxItemSize = this.boxes.length;
-    };
+    }
 
-    //
-    this.convert = () => {
+    convert(): void {
         const text = this.activeMarkdown.value;
 
         // translated!
         console.warn(marked(text, this.markedOptions));
         this.activePreview.innerHTML = marked(text, this.markedOptions);
-    };
+    }
 
-    this.toggle = () => {
+    toggle(): void {
         this.convert();
 
         this.activeMarkdown.classList.toggle('d-none');
         this.activePreview.classList.toggle('d-none');
-    };
+    }
 
-    this.move = (target) => {
+    move(target: HTMLInputElement): void {
         const index = this.activeMarkdown.dataset.index;
 
         // update current field index
         if (target === 'next') {
-            this.currentNodeIndex = (index < this.maxItemSize) ? index : 0;
+            this.currentNodeIndex = index < this.maxItemSize ? index : 0;
         } else {
-            this.currentNodeIndex = (index > 1) ? index - 2 : this.maxItemSize - 1;
+            this.currentNodeIndex =
+                index > 1 ? index - 2 : this.maxItemSize - 1;
         }
 
         // remove active class from current target dom.
@@ -73,9 +80,15 @@ const MdEditor = function (document) {
         this.activeMarkdown.setAttribute('readonly', true);
 
         // add active class to new target dom.
-        this.activeMarkdown = this.boxes[this.currentNodeIndex].querySelector('.markdown-text');
-        this.activePreview = this.boxes[this.currentNodeIndex].querySelector('.markdown-preview');
-        this.activeHeader = this.boxes[this.currentNodeIndex].querySelector('.box-header');
+        this.activeMarkdown = this.boxes[this.currentNodeIndex].querySelector(
+            '.markdown-text'
+        );
+        this.activePreview = this.boxes[this.currentNodeIndex].querySelector(
+            '.markdown-preview'
+        );
+        this.activeHeader = this.boxes[this.currentNodeIndex].querySelector(
+            '.box-header'
+        );
 
         this.activeMarkdown.classList.add('active');
         this.activePreview.classList.add('active');
@@ -85,7 +98,7 @@ const MdEditor = function (document) {
         this.activeMarkdown.focus();
 
         this.activeMarkdown.removeAttribute('readonly');
-    };
-};
+    }
+}
 
 module.exports = MdEditor;

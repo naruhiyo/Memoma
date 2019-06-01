@@ -4,7 +4,7 @@
  * Control the markdown editor.
  *
  * === Functions ===
- * - Requesting any operation to `MdEditor.js`.
+ * - Requesting any operation to `MdEditor.ts`.
  * - Switch each text form.
  */
 const { ipcRenderer } = require('electron');
