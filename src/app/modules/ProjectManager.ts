@@ -3,10 +3,10 @@
  *
  *
  */
-import {remote} from 'electron';
-import * as fs from 'fs'
-import Memoma from './models/Memoma';
-import ProjectField from "./models/ProjectField";
+import { remote } from 'electron';
+import * as fs from 'fs';
+import { Memoma } from './models/Memoma';
+import { ProjectField } from './models/ProjectField';
 
 class ProjectManager {
     /**
@@ -29,34 +29,36 @@ class ProjectManager {
 
                     resolve();
                 });
-            }).then(() => {
-                // create .mmm file (project file)
-                const projectField: ProjectField = {
-                    projectName: `${projectName}`,
-                    filePath: `${projectPath}/.memoma/${projectName}`
-                };
-                const contentProject = JSON.stringify(projectField);
+            })
+                .then(() => {
+                    // create .mmm file (project file)
+                    const projectField: ProjectField = {
+                        projectName: `${projectName}`,
+                        filePath: `${projectPath}/.memoma/${projectName}`,
+                    };
+                    const contentProject = JSON.stringify(projectField);
 
-                fs.writeFile(projectFile, contentProject, err => {
-                    if (err) Promise.reject(new Error(err.message));
-                });
-
-                // create markdown files
-                const fileNameTails: string[] = ['memo', 'note', 'todo'];
-
-                fileNameTails.forEach(fileNameTail => {
-                    const fileName = `${mdDir}/${projectName}_${fileNameTail}.md`;
-
-                    fs.writeFile(fileName, '', err => {
+                    fs.writeFile(projectFile, contentProject, err => {
                         if (err) Promise.reject(new Error(err.message));
                     });
+
+                    // create markdown files
+                    const fileNameTails: string[] = ['memo', 'note', 'todo'];
+
+                    fileNameTails.forEach(fileNameTail => {
+                        const fileName = `${mdDir}/${projectName}_${fileNameTail}.md`;
+
+                        fs.writeFile(fileName, '', err => {
+                            if (err) Promise.reject(new Error(err.message));
+                        });
+                    });
+                })
+                .catch(errorMessage => {
+                    remote.dialog.showErrorBox(
+                        "'The operation doesn't work.'",
+                        errorMessage
+                    );
                 });
-            }).catch(errorMessage => {
-                remote.dialog.showErrorBox(
-                    'The operation doesn\'t work.',
-                    errorMessage
-                );
-            });
         });
     }
 
@@ -68,7 +70,7 @@ class ProjectManager {
      */
     saveProject(memomaData: Memoma): void {
         // markdown contents
-        const mdObject: Array<{ type: string, content: string }> = [
+        const mdObject: Array<{ type: string; content: string }> = [
             {
                 type: 'memo',
                 content: memomaData.memo,
@@ -100,6 +102,6 @@ class ProjectManager {
             });
         });
     }
-};
+}
 
 module.exports = ProjectManager;

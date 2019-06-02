@@ -4,8 +4,8 @@
  *
  */
 import * as fs from 'fs';
-import {remote} from 'electron';
-import ProjectField from './models/ProjectField';
+import { remote } from 'electron';
+import { ProjectField } from './models/ProjectField';
 
 class FileIO {
     fileOpen(): void {
@@ -56,27 +56,34 @@ class FileIO {
                 if (file.includes('memo')) {
                     _this.embedToField(
                         `${projectPath}/${file}`,
-                        document.querySelector('#memo-md-field') as HTMLInputElement
+                        document.querySelector(
+                            '#memo-md-field'
+                        ) as HTMLInputElement
                     );
                 }
 
                 if (file.includes('note')) {
                     _this.embedToField(
                         `${projectPath}/${file}`,
-                        document.querySelector('#note-md-field') as HTMLInputElement
+                        document.querySelector(
+                            '#note-md-field'
+                        ) as HTMLInputElement
                     );
                 }
 
                 if (file.includes('todo')) {
                     _this.embedToField(
                         `${projectPath}/${file}`,
-                        document.querySelector('#todo-md-field') as HTMLInputElement
+                        document.querySelector(
+                            '#todo-md-field'
+                        ) as HTMLInputElement
                     );
                 }
             });
         });
 
-        _this.addProjectNameToField(projectField.projectName,
+        _this.addProjectNameToField(
+            projectField.projectName,
             document.querySelector('#project-name') as HTMLInputElement
         );
     }

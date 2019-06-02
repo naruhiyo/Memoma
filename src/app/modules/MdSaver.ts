@@ -7,7 +7,7 @@
  *
  * - Save markdown files.
  */
-import Memoma from './models/Memoma';
+import { Memoma } from './models/Memoma';
 const ipc = require('electron').ipcRenderer;
 
 ipc.on(

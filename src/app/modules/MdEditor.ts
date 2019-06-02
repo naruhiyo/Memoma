@@ -100,7 +100,6 @@ class MdEditor {
             return;
         }
 
-
         this.activeMarkdown.classList.add('active');
         this.activePreview.classList.add('active');
         this.activeHeader.classList.add('active');
