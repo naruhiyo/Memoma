@@ -1,7 +1,7 @@
 'use strict';
 
 // global module
-import { app, BrowserWindow, Menu, shell, ipcMain, remote } from 'electron';
+import { app, BrowserWindow, Menu, shell, ipcMain, dialog } from 'electron';
 import { ProjectManager } from './app/modules/ProjectManager.js';
 import { Memoma } from "./app/modules/models/Memoma";
 
@@ -140,7 +140,7 @@ app.on('ready', () => {
             properties: ['openDirectory'],
         };
 
-        projectPath = await remote.dialog.showOpenDialog(projectPathSaveOption)!.toString();
+        projectPath = await dialog.showOpenDialog(projectPathSaveOption)!.toString();
 
         if (projectPath !== undefined) {
             mainWindow!.webContents.send('onProjectNameInfill');

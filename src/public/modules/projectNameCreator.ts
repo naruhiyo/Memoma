@@ -1,6 +1,6 @@
 'use strict';
 
-const ipc = require('electron').ipcRenderer;
+import { ipcRenderer } from 'electron';
 const saveBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById('save_btn');
 
 if (saveBtn !== null) {
@@ -13,12 +13,12 @@ if (saveBtn !== null) {
             (projectSaver === null) ||
             (projectName === null)) return;
 
-        ipc.send('onCreateProjectName', projectNameTxtBox.value);
+        ipcRenderer.send('onCreateProjectName', projectNameTxtBox.value);
 
         projectSaver.classList.toggle('d-none');
         projectName.dataset.projectName = projectNameTxtBox.value;
 
-        ipc.on('onProjectNameInfill', () => {
+        ipcRenderer.on('onProjectNameInfill', () => {
             projectSaver.classList.toggle('d-none');
         });
     });
