@@ -3,4 +3,5 @@ export interface Memoma {
     note: string;
     todo: string;
     projectName: string;
+    projectPath: string;
 }

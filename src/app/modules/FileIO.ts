@@ -82,8 +82,9 @@ class FileIO {
             });
         });
 
-        _this.addProjectNameToField(
+        _this.addProjectAttributesToField(
             projectField.projectName,
+            projectPath,
             document.querySelector('#project-name') as HTMLInputElement
         );
     }
@@ -100,8 +101,9 @@ class FileIO {
         });
     }
 
-    addProjectNameToField(projectName: string, dom: HTMLInputElement): void {
+    addProjectAttributesToField(projectName: string, projectPath: string, dom: HTMLInputElement): void {
         dom.dataset.projectName = projectName;
+        dom.dataset.projectPath = projectName;
     }
 }
 

@@ -124,8 +124,7 @@ app.on('ready', () => {
     ipcMain.on('onCreateProjectName', async (event: Electron.Event, projectName: string) => {
         event.sender.send('actionReply', projectName);
         if (projectPath !== undefined) {
-            await projectManager.setProject(projectName, projectPath);
-            projectManager.createProject();
+            projectManager.createProject(projectName, projectPath);
         }
     });
 

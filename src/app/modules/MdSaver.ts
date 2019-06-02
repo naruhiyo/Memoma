@@ -30,12 +30,14 @@ ipc.on(
         ) as HTMLElement;
 
         const name: string = projectName.dataset.projectName!;
+        const path: string = projectName.dataset.projectPath!;
 
         const memomaData: Memoma = {
             memo: memoMdField.value,
             note: noteMdField.value,
             todo: todoMdField.value,
             projectName: name,
+            projectPath: path
         };
 
         ipc.send('onSendProjectData', memomaData);

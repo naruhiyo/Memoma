@@ -9,22 +9,12 @@ import { Memoma } from './models/Memoma';
 import { ProjectField } from './models/ProjectField';
 
 export class ProjectManager {
-    private projectName: string = '';
-    private projectPath: string = '';
-
-    setProject(projectName: string, projectPath: string) {
-        this.projectName = projectName;
-        this.projectPath = projectPath;
-    }
-
     /**
      * Create new project.
      */
-    createProject(): void {
-        const mdDir = `${this.projectPath}/.memoma/${this.projectName}`;
-        const projectFile = `${this.projectPath}/${this.projectName}.mmm`;
-        const projectName = this.projectName;
-        const projectPath = this.projectPath;
+    createProject(projectName: string, projectPath: string): void {
+        const mdDir = `${projectPath}/.memoma/${projectName}`;
+        const projectFile = `${projectPath}/${projectName}.mmm`;
 
         fs.access(mdDir, err => {
             if (!err) return;
@@ -77,8 +67,8 @@ export class ProjectManager {
      * @param memomaData
      */
     saveProject(memomaData: Memoma): void {
-        const mdDir = `${this.projectPath}/.memoma/${this.projectName}`;
         const projectName: string = memomaData.projectName;
+        const projectPath: string = memomaData.projectPath;
 
         // markdown contents
         const mdObject: Array<{ type: string; content: string }> = [
@@ -99,7 +89,7 @@ export class ProjectManager {
 
         // overwrite markdown files
         mdObject.forEach(mdObj => {
-            const fileName = `${mdDir}/${projectName}_${mdObj.type}.md`;
+            const fileName = `${projectPath}/${projectName}_${mdObj.type}.md`;
 
             fs.writeFile(fileName, mdObj.content, err => {
                 if (err) {
