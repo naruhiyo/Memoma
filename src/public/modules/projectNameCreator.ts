@@ -1,6 +1,6 @@
 'use strict';
 
-import { ipcRenderer as pncIpcRenderer} from 'electron';
+const pncIpcRenderer: Electron.IpcRenderer = require('electron').ipcRenderer;
 const saveBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById('save_btn');
 const projectSaver: HTMLElement = <HTMLElement>document.getElementById('project-saver');
 

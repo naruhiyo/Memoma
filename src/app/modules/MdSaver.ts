@@ -8,9 +8,9 @@
  * - Save markdown files.
  */
 import { Memoma } from './models/Memoma';
-import { ipcRenderer as msIpcRenderer } from 'electron';
+const msIpcRenderer: Electron.IpcRenderer = require('electron').ipcRenderer;
 
-ipcRenderer.on(
+msIpcRenderer.on(
     'onSaveProject',
     (): void => {
         const memoMdField: HTMLInputElement = document.querySelector(
