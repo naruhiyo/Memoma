@@ -5,7 +5,7 @@ build
 node_modules
 package-lock.json
 
-src/app/modules/**/*.js
+src/**/*.js
 
 .memoma
 *.mmm

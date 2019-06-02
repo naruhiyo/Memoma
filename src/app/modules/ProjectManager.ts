@@ -3,20 +3,28 @@
  *
  *
  */
-import { remote } from 'electron';
+import { dialog } from 'electron';
 import * as fs from 'fs';
 import { Memoma } from './models/Memoma';
 import { ProjectField } from './models/ProjectField';
 
-class ProjectManager {
+export class ProjectManager {
+    private projectName: string = '';
+    private projectPath: string = '';
+
+    setProject(projectName: string, projectPath: string) {
+        this.projectName = projectName;
+        this.projectPath = projectPath;
+    }
+
     /**
      * Create new project.
-     * @param {string} projectName name of project which the user input #projectName_txtbox
-     * @param {string} projectPath path to project
      */
-    createProject(projectName: string, projectPath: string): void {
-        const mdDir = `${projectPath}/.memoma/${projectName}`;
-        const projectFile = `${projectPath}/${projectName}.mmm`;
+    createProject(): void {
+        const mdDir = `${this.projectPath}/.memoma/${this.projectName}`;
+        const projectFile = `${this.projectPath}/${this.projectName}.mmm`;
+        const projectName = this.projectName;
+        const projectPath = this.projectPath;
 
         fs.access(mdDir, err => {
             if (!err) return;
@@ -54,7 +62,7 @@ class ProjectManager {
                     });
                 })
                 .catch(errorMessage => {
-                    remote.dialog.showErrorBox(
+                    dialog.showErrorBox(
                         "'The operation doesn't work.'",
                         errorMessage
                     );
@@ -69,6 +77,9 @@ class ProjectManager {
      * @param memomaData
      */
     saveProject(memomaData: Memoma): void {
+        const mdDir = `${this.projectPath}/.memoma/${this.projectName}`;
+        const projectName: string = memomaData.projectName;
+
         // markdown contents
         const mdObject: Array<{ type: string; content: string }> = [
             {
@@ -85,8 +96,6 @@ class ProjectManager {
             },
         ];
 
-        const mdDir = `${__dirname}/../../.memoma/'${memomaData.projectName}`;
-        const projectName: string = memomaData.projectName;
 
         // overwrite markdown files
         mdObject.forEach(mdObj => {
@@ -94,7 +103,7 @@ class ProjectManager {
 
             fs.writeFile(fileName, mdObj.content, err => {
                 if (err) {
-                    remote.dialog.showErrorBox(
+                    dialog.showErrorBox(
                         'An error ocurred when the file saved.',
                         err.message
                     );
@@ -103,5 +112,3 @@ class ProjectManager {
         });
     }
 }
-
-module.exports = ProjectManager;
