@@ -1,27 +1,25 @@
 'use strict';
 
-import { ipcRenderer } from 'electron';
+import { ipcRenderer as pncIpcRenderer} from 'electron';
 const saveBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById('save_btn');
+const projectSaver: HTMLElement = <HTMLElement>document.getElementById('project-saver');
 
 if (saveBtn !== null) {
     saveBtn.addEventListener('click', function () {
-        let projectNameTxtBox: HTMLInputElement = <HTMLInputElement>document.getElementById('projectName_txtbox');
-        let projectSaver: HTMLElement = <HTMLElement>document.getElementById('project-saver');
-        let projectName: HTMLElement = <HTMLElement>document.getElementById('project-name');
+        const projectNameTxtBox: HTMLInputElement = <HTMLInputElement>document.getElementById('projectName_txtbox');
+        const projectName: HTMLElement = <HTMLElement>document.getElementById('project-name');
 
         if ((projectNameTxtBox === null) ||
             (projectSaver === null) ||
             (projectName === null)) return;
 
-        ipcRenderer.send('onCreateProjectName', projectNameTxtBox.value);
+        pncIpcRenderer.send('onCreateProjectName', projectNameTxtBox.value);
 
         projectSaver.classList.toggle('d-none');
         projectName.dataset.projectName = projectNameTxtBox.value;
-
-        ipcRenderer.on('onProjectNameInfill', () => {
-            projectSaver.classList.toggle('d-none');
-        });
     });
-
-
 }
+
+pncIpcRenderer.on('onProjectNameInfill', () => {
+    projectSaver.classList.toggle('d-none');
+});

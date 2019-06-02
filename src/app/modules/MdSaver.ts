@@ -8,7 +8,7 @@
  * - Save markdown files.
  */
 import { Memoma } from './models/Memoma';
-import { ipcRenderer } from 'electron';
+import { ipcRenderer as msIpcRenderer } from 'electron';
 
 ipcRenderer.on(
     'onSaveProject',
@@ -40,6 +40,6 @@ ipcRenderer.on(
             projectPath: path
         };
 
-        ipcRenderer.send('onSendProjectData', memomaData);
+        msIpcRenderer.send('onSendProjectData', memomaData);
     }
 );
