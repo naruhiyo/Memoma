@@ -3,7 +3,7 @@
  *
  *
  */
-import { dialog } from 'electron';
+import { dialog, remote } from 'electron';
 import * as fs from 'fs';
 import { Memoma } from './models/Memoma';
 import { ProjectField } from './models/ProjectField';
@@ -52,7 +52,7 @@ export class ProjectManager {
                     });
                 })
                 .catch(errorMessage => {
-                    dialog.showErrorBox(
+                    remote.dialog.showErrorBox(
                         "'The operation doesn't work.'",
                         errorMessage
                     );
