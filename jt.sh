@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'removing *.js in src directory...';
 rm src/main.js;
 rm src/app/modules/*.js;
