@@ -1,5 +1,9 @@
 /**
- * # Backend Modules
+ * ## Description
+ *
+ * Backend Modules
+ *
+ * ### Functions
  *
  * - create project files.
  * - save project files.
@@ -9,6 +13,9 @@ import * as fs from 'fs';
 import { Memoma } from './models/Memoma';
 import { ProjectField } from './models/ProjectField';
 
+/**
+ * A project data management controller
+ */
 export class ProjectManager {
     /**
      * Create new project.

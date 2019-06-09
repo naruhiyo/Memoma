@@ -1,29 +1,59 @@
 /**
+ * ## Description
+ *
  * Backend Modules
  *
- * The Controller of markdown editor
+ * ### Functions
  *
- * === Functions ===
  * - Convert the markdown text to the html text.
  * - Toggle editor view.
  */
-// libraries
+
+/**
+ * A dependent module from `[marked](https://github.com/markedjs/marked)`.
+ */
 const marked = require('marked');
 
+/**
+ * A markdown data management controller
+ */
 class MdEditor {
-    // dom elements
+    /**
+     * Document Object Model List
+     */
     private readonly boxes: NodeListOf<HTMLElement> | null = null;
+    /**
+     * Markdown areas document object model
+     */
     private activeMarkdown: HTMLInputElement | null = null;
+    /**
+     * Previews document object model
+     */
     private activePreview: HTMLElement | null = null;
+    /**
+     * A tab document object model
+     */
     private activeHeader: HTMLElement | null = null;
 
-    // position index
+    /**
+     * A maximum used size
+     */
     private readonly maxItemSize: number = 0;
+
+    /**
+     * Current item position
+     */
     private currentNodeIndex = 0;
 
-    // marked options
+    /**
+     * Options for using `marked`
+     */
     private markedOptions: object = {};
 
+    /**
+     * Constructor
+     * @param document the `index.html`
+     */
     constructor(document: HTMLElement) {
         if (document == null) {
             alert('The HTML Element does not find.');
@@ -42,7 +72,8 @@ class MdEditor {
     }
 
     /**
-     * Public Fields
+     * Toggle input form and preview.
+     * @return
      */
     toggle(): void {
         if (this.activeMarkdown == null || this.activePreview == null) {
@@ -54,6 +85,11 @@ class MdEditor {
         this.activePreview.classList.toggle('d-none');
     }
 
+    /**
+     * Move next tab area
+     * @param target the target position
+     * @return
+     */
     move(target = 'next'): void {
         if (
             this.activeMarkdown == null ||
@@ -111,7 +147,8 @@ class MdEditor {
     }
 
     /**
-     * Private Fields
+     * Translate the markdown text to HTML.
+     * @return
      */
     private convert(): void {
         if (this.activeMarkdown == null) {

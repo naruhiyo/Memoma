@@ -1,4 +1,6 @@
 /**
+ * ## Description
+ *
  * An entity of Memo
  */
 export interface Memoma {
