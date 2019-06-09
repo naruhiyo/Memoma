@@ -26,8 +26,6 @@ const projectManager = new ProjectManager();
 let mainWindow: Electron.BrowserWindow | null;
 
 app.on('ready', () => {
-    let projectPath: string | undefined;
-
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
@@ -134,11 +132,9 @@ app.on('ready', () => {
 
     Menu.setApplicationMenu(menu);
 
-    ipcMain.on('onCreateProjectName', async (event: Electron.Event, projectName: string) => {
-        event.sender.send('actionReply', projectName);
-        if (projectPath !== undefined) {
-            projectManager.createProject(projectName, projectPath);
-        }
+    ipcMain.on('onCreateProjectName', async (event: Electron.Event, projectNameDataset: { name: string, path: string }) => {
+        event.sender.send('actionReply', projectNameDataset.name);
+        projectManager.createProject(projectNameDataset.name, projectNameDataset.path);
     });
 
     ipcMain.on('onSaveFromBtn', () => onSaveProject());
@@ -153,10 +149,10 @@ app.on('ready', () => {
             properties: ['openDirectory'],
         };
 
-        projectPath = await dialog.showOpenDialog(projectPathSaveOption)!.toString();
+        const projectPath: string = await dialog.showOpenDialog(projectPathSaveOption)!.toString();
 
         if (projectPath !== undefined) {
-            mainWindow!.webContents.send('onProjectNameInfill');
+            mainWindow!.webContents.send('onProjectNameInfill', projectPath);
         }
     }
 
