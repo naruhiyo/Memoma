@@ -14,7 +14,7 @@
     "check": "npx gts check",
     "clean": "npx gts clean",
     "compile": "tsc -p .",
-    "movejs": "./jt.sh",
+    "movejs": "jt.sh",
     "fix": "npx gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
