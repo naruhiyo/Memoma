@@ -7,6 +7,7 @@
  *
  * - Convert the markdown text to the html text.
  * - Toggle editor view.
+ * - Move next or prev tab.
  */
 
 /**

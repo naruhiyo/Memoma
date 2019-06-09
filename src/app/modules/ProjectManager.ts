@@ -8,6 +8,10 @@
  * - create project files.
  * - save project files.
  */
+
+/**
+ * Import modules
+ */
 import { dialog, remote } from 'electron';
 import * as fs from 'fs';
 import { Memoma } from './models/Memoma';
