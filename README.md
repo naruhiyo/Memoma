@@ -75,6 +75,25 @@ $ npm run build:win
 $ npm run check [:your_target_file] # you can select the file to check statements.
 ```
 
+## How To
+1. Create new project or open a project.
+1. Edit file.
+1. Save the project.
+
+### Create New Project
+1. Select `File`->`Create New Project` or `Ctrl + n`.
+1. Select the directory which you want to create new project.
+1. Input a project name.
+1. Click `save` button.
+
+### Edit File
+- Move to next tab: `Ctrl + Tab`
+- Move to prev tab: `Ctrl + Shift + Tab`
+- Toggle Preview/Edit: `Ctrl + p`
+
+### Save the Project
+1. Select `File`->`Save Project` or `Ctrl + s`.
+
 ## Documentation
 Here is [the documentation](https://narugit.github.io/Memoma
 ) by generating [TypeDoc](https://typedoc.org/).
