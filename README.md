@@ -20,7 +20,60 @@ A memo-app that can write `markdown`, and this app is made by electron.
 ![demo](https://github.com/narugit/Memoma/blob/master/docs/assets/images/demos.gif)
 
 ## Installation
-Coming Soon
+
+### Introduction
+
+```bash
+# copy to local
+$ git clone https://github.com/narugit/Memoma.git
+
+# package install
+$ npm install # npm i
+```
+
+### Dev
+
+```bash
+$ npm run dev
+```
+
+### Build
+
+#### compile
+
+This sources is made by `typescript`, so you have to compile the files.
+
+We use `gts` to compile them and you can use this.
+
+```bash
+$ npm run compile
+```
+
+And then, you must move the compiled files to `src/`, because the files create in `build/`.
+
+Below command is a shell script that can move to `src/` automatically.
+
+```bash
+$ npm run movejs
+# or you can use this one
+$ ./jt.sh
+```
+
+### deploy
+
+```bash
+# For Windows
+$ npm run build:win
+
+# For Mac
+$ npm run build:win
+```
+
+### code lint
+
+```bash
+$ npm run check [:your_target_file] # you can select the file to check statements.
+```
 
 ## Documentation
 Here is [the documentation](https://narugit.github.io/Memoma
@@ -30,7 +83,8 @@ Here is [the documentation](https://narugit.github.io/Memoma
 
 ```
 /
-├ doc                       # documentation
+├ docs                      # documentation
+│   └ requirement           # system requirement document
 ├ src                       
 │   ├ app
 │   │   └ modules           # core modules
