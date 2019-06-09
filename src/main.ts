@@ -78,9 +78,9 @@ app.on('ready', () => {
                     role: 'redo',
                 },
                 // For debugger
-                {
-                    role: 'toggledevtools',
-                },
+                // {
+                //     role: 'toggledevtools',
+                // },
             ],
         },
         {
