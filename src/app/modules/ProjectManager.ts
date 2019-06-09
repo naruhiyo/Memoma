@@ -1,16 +1,31 @@
 /**
+ * ## Description
+ *
  * Backend Modules
  *
+ * ### Functions
  *
+ * - create project files.
+ * - save project files.
+ */
+
+/**
+ * Import modules
  */
 import { dialog, remote } from 'electron';
 import * as fs from 'fs';
 import { Memoma } from './models/Memoma';
 import { ProjectField } from './models/ProjectField';
 
+/**
+ * A project data management controller
+ */
 export class ProjectManager {
     /**
      * Create new project.
+     * @param projectName　the name an user input.
+     * @param projectPath the place the files created.
+     * @return
      */
     createProject(projectName: string, projectPath: string): void {
         const mdDir = `${projectPath}/.memoma/${projectName}`;
@@ -63,8 +78,8 @@ export class ProjectManager {
     /**
      * Overwrite .md files.
      *     Call from onSaveProject function from main.js.
-     *     project name
-     * @param memomaData
+     * @param memomaData A memoma entity
+     * @return
      */
     saveProject(memomaData: Memoma): void {
         const projectName: string = memomaData.projectName;

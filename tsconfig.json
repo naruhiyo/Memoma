@@ -4,19 +4,15 @@
     "rootDir": ".",
     "outDir": "build",
     "lib": [
+      "es2016",
       "dom"
+    ],
+    "types": [
+      "electron"
     ]
   },
   "include": [
     "src/**/*.ts",
     "test/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules/**/*.ts"
-  ],
-  "lib": [
-    "es6",
-    "dom"
-  ],
-  "allowJs": true
+  ]
 }

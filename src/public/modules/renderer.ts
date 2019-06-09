@@ -1,18 +1,36 @@
 /**
+ * ## Description
  * Client Side Modules.
- *
  * Control the markdown editor.
  *
- * === Functions ===
+ * ## Functions
  * - Requesting any operation to `MdEditor.ts`.
  * - Switch each text form.
  */
+
+/**
+* Communicate asynchronously from a renderer process to the main process.
+*/
 const ipcRenderer: Electron.IpcRenderer = require('electron').ipcRenderer;
 
+/**
+ * Required MdEditor class
+ */
 const mdEditor = require('./app/modules/MdEditor');
+
+/**
+ * Required FileIO class
+ */
 const FileIO = require('./app/modules/FileIO');
 
+/**
+ * The Controller of markdown editor
+ */
 const editor = new mdEditor(document);
+
+/**
+ * The manager of open local file
+ */
 const fileIO = new FileIO();
 
 document.addEventListener('DOMContentLoaded', async () => {

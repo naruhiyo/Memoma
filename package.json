@@ -2,21 +2,30 @@
   "name": "Memoma",
   "version": "1.0.0",
   "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/narugit/Memoma"
+  },
   "main": "src/main.js",
   "scripts": {
-    "dev": "electron .",
+    "dev": "npm run compile && npm run movejs && electron .",
     "build:mac": "node build-mac.js",
     "build:win": "node build-win.js",
     "check": "npx gts check",
     "clean": "npx gts clean",
     "compile": "tsc -p .",
-    "movejs": "jt.sh",
+    "movejs": "./jt.sh",
     "fix": "npx gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check",
+    "doc": "npx typedoc --out docs/ src/"
   },
-  "keywords": [],
+  "keywords": [
+    "Node.js",
+    "Electrom",
+    "Standalone Application"
+  ],
   "author": "Narukey, Tatwo.yap",
   "license": "ISC",
   "dependencies": {
