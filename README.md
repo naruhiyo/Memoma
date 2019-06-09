@@ -10,6 +10,7 @@ A simple memo app.
 [![FrameWork: Electron](https://img.shields.io/badge/FrameWork-Electron_5.x-teal.svg)]()
 
 [![DocStyle: TypeDoc](https://img.shields.io/badge/DocStyle-TypeDoc%200.14.2-blueviolet.svg)]()
+[![CodeStyle: gts](https://img.shields.io/badge/CodeStyle-gts%201.0.0-blueviolet.svg)]()
 
 ## What's about?
 
