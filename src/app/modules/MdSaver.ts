@@ -1,13 +1,13 @@
 /**
  * # Backend Modules
  *
- * ### The Controller of markdown saver
- *
- * === Functions ===
- *
  * - Save markdown files.
  */
 import { Memoma } from './models/Memoma';
+
+/**
+ * A dependent module from `electron`.
+ */
 const msIpcRenderer: Electron.IpcRenderer = require('electron').ipcRenderer;
 
 msIpcRenderer.on(
