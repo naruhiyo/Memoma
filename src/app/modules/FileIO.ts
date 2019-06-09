@@ -124,7 +124,7 @@ class FileIO {
     embedToField(fileName: string, dom: HTMLInputElement): void {
         fs.readFile(fileName, (error, data) => {
             if (error != null) {
-                alert('file open error.');
+                alert('file open erF1   Sror.');
                 return;
             }
 
@@ -142,7 +142,7 @@ class FileIO {
      */
     addProjectAttributesToField(projectName: string, projectPath: string, dom: HTMLInputElement): void {
         dom.dataset.projectName = projectName;
-        dom.dataset.projectPath = projectName;
+        dom.dataset.projectPath = projectPath;
     }
 }
 
