@@ -86,6 +86,10 @@ $ npm run check [:your_target_file] # you can select the file to check statement
 1. Input a project name.
 1. Click `save` button.
 
+### Open Project
+1. Select `File`->`Open Project` or `Ctrl + o`.
+1. Select a project file (`.mmm` file) and open it.
+
 ### Edit File
 - Move to next tab: `Ctrl + Tab`
 - Move to prev tab: `Ctrl + Shift + Tab`
