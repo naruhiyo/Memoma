@@ -19,7 +19,7 @@
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run check",
-    "doc": "npx typedoc --out doc/code src/"
+    "doc": "npx typedoc --out docs/ src/"
   },
   "keywords": [
     "Node.js",
