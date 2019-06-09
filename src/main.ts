@@ -1,20 +1,33 @@
-'use strict';
+/**
+ * ## Description
+ * Main process.
+ * 
+ * ## Functions
+ * - Open window.
+ * - Close window.
+ * - Manage menu controll.
+ */
 
-// global module
+/**
+ * Import modules
+ */
 import { app, BrowserWindow, Menu, shell, ipcMain, dialog } from 'electron';
 import { ProjectManager } from './app/modules/ProjectManager.js';
 import { Memoma } from "./app/modules/models/Memoma";
 
+/**
+ * Create and save project
+ */
 const projectManager = new ProjectManager();
 
-// メインウィンドウはGCされないようにグローバル宣言
+/**
+ * Create and control browser windows
+ */
 let mainWindow: Electron.BrowserWindow | null;
 
-// Executed after the electron started.
 app.on('ready', () => {
     let projectPath: string | undefined;
 
-    // Main process
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
@@ -22,12 +35,13 @@ app.on('ready', () => {
             nodeIntegration: true,
         },
     });
+
     mainWindow.loadURL(`file://${__dirname}/index.html`);
     mainWindow.webContents.on('new-window', (event, url) => {
         event.preventDefault();
         shell.openExternal(url);
     });
-    // App exit.
+
     mainWindow.on('closed', () => {
         mainWindow = null;
         if (process.platform !== 'darwin') {
@@ -35,7 +49,6 @@ app.on('ready', () => {
         }
     });
 
-    // The global menu of Electron app.
     const templateMenu: Electron.MenuItemConstructorOptions[] = [
         {
             label: 'File',
