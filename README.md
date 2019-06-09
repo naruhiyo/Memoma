@@ -17,7 +17,7 @@ A simple memo app.
 A memo-app that can write `markdown`, and this app is made by electron.
 
 ## Demo
-Coming Soon
+![demo](https://github.com/narugit/Memoma/blob/master/docs/assets/images/demo.gif)
 
 ## Installation
 Coming Soon
