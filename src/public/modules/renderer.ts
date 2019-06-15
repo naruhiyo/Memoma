@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         editor.toggle();
     });
 
-    ipcRenderer.on('changeMdEditor', (data: { target: string }) => {
+    ipcRenderer.on('changeMdEditor', (event: string, data: { target: string }) => {
         editor.move(data.target);
     });
 
