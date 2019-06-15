@@ -72,16 +72,89 @@
 					<p><a href="https://opensource.org/licenses/MIT"><img
 								src="https://img.shields.io/badge/License-MIT-teal.svg" alt="License: MIT"></a></p>
 					<p><a href=""><img src="https://img.shields.io/badge/Lang-NodeJS_11.x-blue.svg"
-								alt="License: MIT"></a>
-						<a href=""><img src="https://img.shields.io/badge/Lang-TypeScript_3.x-blue.svg"
-								alt="License: MIT"></a></p>
+								alt="Lang: NodeJS"></a>
+						<a href=""><img src="https://img.shields.io/badge/Lang-TypeScript%203.4.x-blue.svg"
+								alt="Lang: TypeScript"></a></p>
 					<p><a href=""><img src="https://img.shields.io/badge/FrameWork-Electron_5.x-teal.svg"
-								alt="License: MIT"></a></p>
+								alt="FrameWork: Electron"></a></p>
+					<p><a href=""><img src="https://img.shields.io/badge/DocStyle-TypeDoc%200.14.x-blueviolet.svg"
+								alt="DocStyle: TypeDoc"></a>
+						<a href=""><img src="https://img.shields.io/badge/CodeStyle-gts%201.x-blueviolet.svg"
+								alt="CodeStyle: gts"></a></p>
 					<h2 id="what-s-about-">What&#39;s about?</h2>
 					<p>A memo-app that can write <code>markdown</code>, and this app is made by electron.</p>
+					<h2 id="demo">Demo</h2>
+					<p><img src="https://raw.githubusercontent.com/narugit/Memoma/master/docs/assets/images/demos.gif"
+							alt="demo"></p>
+					<h2 id="installation">Installation</h2>
+					<ol>
+						<li>Please download zip file from <a href="https://github.com/narugit/Memoma/releases">here</a>.
+						</li>
+						<li>After unzip it, please execute <code>Memoma.exe</code>.</li>
+					</ol>
+					<h2 id="for-developers">For Developers</h2>
+					<h3 id="introduction">Introduction</h3>
+					<pre><code class="language-bash"><span class="hljs-comment"># copy to local</span>
+$ git <span class="hljs-built_in">clone</span> https://github.com/narugit/Memoma.git
+
+<span class="hljs-comment"># package install</span>
+$ npm install <span class="hljs-comment"># npm i</span></code></pre>
+					<h3 id="dev">Dev</h3>
+					<pre><code class="language-bash">$ npm run dev</code></pre>
+					<h3 id="build">Build</h3>
+					<h4 id="compile">compile</h4>
+					<p>This sources is made by <code>typescript</code>, so you have to compile the files.</p>
+					<p>We use <code>gts</code> to compile them and you can use this.</p>
+					<pre><code class="language-bash">$ npm run compile</code></pre>
+					<p>And then, you must move the compiled files to <code>src/</code>, because the files create in
+						<code>build/</code>.</p>
+					<p>Below command is a shell script that can move to <code>src/</code> automatically.</p>
+					<pre><code class="language-bash">$ npm run movejs
+<span class="hljs-comment"># or you can use this one</span>
+$ ./jt.sh</code></pre>
+					<h3 id="deploy">deploy</h3>
+					<pre><code class="language-bash"><span class="hljs-comment"># For Windows</span>
+$ npm run build:win
+
+<span class="hljs-comment"># For Mac</span>
+$ npm run build:win</code></pre>
+					<h3 id="code-lint">code lint</h3>
+					<pre><code class="language-bash">$ npm run check [:your_target_file] <span class="hljs-comment"># you can select the file to check statements.</span></code></pre>
+					<h2 id="how-to">How To</h2>
+					<ol>
+						<li>Create new project or open a project.</li>
+						<li>Edit file.</li>
+						<li>Save the project.</li>
+					</ol>
+					<h3 id="create-new-project">Create New Project</h3>
+					<ol>
+						<li>Select <code>File</code>-&gt;<code>Create New Project</code> or <code>Ctrl + n</code>.</li>
+						<li>Select the directory which you want to create new project.</li>
+						<li>Input a project name.</li>
+						<li>Click <code>save</code> button.</li>
+					</ol>
+					<h3 id="open-project">Open Project</h3>
+					<ol>
+						<li>Select <code>File</code>-&gt;<code>Open Project</code> or <code>Ctrl + o</code>.</li>
+						<li>Select a project file (<code>.mmm</code> file) and open it.</li>
+					</ol>
+					<h3 id="edit-file">Edit File</h3>
+					<ul>
+						<li>Move to next tab: <code>Ctrl + Tab</code></li>
+						<li>Move to prev tab: <code>Ctrl + Shift + Tab</code></li>
+						<li>Toggle Preview/Edit: <code>Ctrl + p</code></li>
+					</ul>
+					<h3 id="save-the-project">Save the Project</h3>
+					<ol>
+						<li>Select <code>File</code>-&gt;<code>Save Project</code> or <code>Ctrl + s</code>.</li>
+					</ol>
+					<h2 id="documentation">Documentation</h2>
+					<p>Here is <a href="https://narugit.github.io/Memoma">the documentation</a> by generating <a
+							href="https://typedoc.org/">TypeDoc</a>.</p>
 					<h2 id="directory">Directory</h2>
 					<pre><code>/
-├ doc                       # documentation
+├ docs                      # documentation
+│   └ requirement           #<span class="hljs-built_in"> system </span>requirement document
 ├ src                       
 │   ├ app
 │   │   └ modules           # core modules
