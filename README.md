@@ -21,6 +21,11 @@ A memo-app that can write `markdown`, and this app is made by electron.
 
 ## Installation
 
+1. Please download zip file from [here](https://github.com/narugit/Memoma/releases).
+1. After unzip it, please execute `Memoma.exe`.
+
+## For Developers
+
 ### Introduction
 
 ```bash
