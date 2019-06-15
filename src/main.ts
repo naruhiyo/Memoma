@@ -58,7 +58,7 @@ app.on('ready', () => {
                 },
                 {
                     label: 'Create New Project',
-                    accelerator: 'CmdOrCtrl+Shift+S',
+                    accelerator: 'CmdOrCtrl+N',
                     click: () => onCreateNewProjectPreparation(),
                 },
                 {
