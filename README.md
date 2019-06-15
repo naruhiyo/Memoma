@@ -24,6 +24,29 @@ A memo-app that can write `markdown`, and this app is made by electron.
 1. Please download zip file from [here](https://github.com/narugit/Memoma/releases).
 1. After unzip it, please execute `Memoma.exe`.
 
+## How To
+1. Create new project or open a project.
+1. Edit file.
+1. Save the project.
+
+### Create New Project
+1. Select `File`->`Create New Project` or `Ctrl + n`.
+1. Select the directory which you want to create new project.
+1. Input a project name.
+1. Click `save` button.
+
+### Open Project
+1. Select `File`->`Open Project` or `Ctrl + o`.
+1. Select a project file (`.mmm` file) and open it.
+
+### Edit File
+- Move to next tab: `Ctrl + Tab`
+- Move to prev tab: `Ctrl + Shift + Tab`
+- Toggle Preview/Edit: `Ctrl + p`
+
+### Save the Project
+1. Select `File`->`Save Project` or `Ctrl + s`.
+
 ## For Developers
 
 ### Introduction
@@ -80,29 +103,6 @@ $ npm run build:win
 $ npm run check [:your_target_file] # you can select the file to check statements.
 ```
 
-## How To
-1. Create new project or open a project.
-1. Edit file.
-1. Save the project.
-
-### Create New Project
-1. Select `File`->`Create New Project` or `Ctrl + n`.
-1. Select the directory which you want to create new project.
-1. Input a project name.
-1. Click `save` button.
-
-### Open Project
-1. Select `File`->`Open Project` or `Ctrl + o`.
-1. Select a project file (`.mmm` file) and open it.
-
-### Edit File
-- Move to next tab: `Ctrl + Tab`
-- Move to prev tab: `Ctrl + Shift + Tab`
-- Toggle Preview/Edit: `Ctrl + p`
-
-### Save the Project
-1. Select `File`->`Save Project` or `Ctrl + s`.
-
 ## Documentation
 Here is [the documentation](https://narugit.github.io/Memoma
 ) by generating [TypeDoc](https://typedoc.org/).
@@ -127,7 +127,7 @@ Here is [the documentation](https://narugit.github.io/Memoma
 └ README.md                       
 ```
 
-## Contributor
+## Contributors
 
 - [narugit](https://github.com/narugit)
 
